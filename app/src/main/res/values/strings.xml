@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Just In Time CBT</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="goalsBtnText">Goals</string>
+    <string name="motivationBtnText">Motivation</string>
+    <string name="rationalThinkingBtnText">Rational Thinking</string>
+    <string name="behaviorsBtnText">Behaviors</string>
+    <string name="mainBackgroundColor">#222</string>
+</resources>
