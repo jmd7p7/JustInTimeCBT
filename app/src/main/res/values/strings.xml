@@ -7,4 +7,15 @@
     <string name="rationalThinkingBtnText">Rational Thinking</string>
     <string name="behaviorsBtnText">Behaviors</string>
     <string name="mainBackgroundColor">#222</string>
+    <string name="title_activity_behavior">Behaviors</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_single_behavior">SingleBehaviorActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_behavior">Add New Behavior</string>
+    <string name="behaviorNameLabel">Behavior Name:</string>
+    <string name="addBtnText">Add</string>
+    <string name="SelectedBehavior">BehaviorName</string>
 </resources>

@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BehaviorActivity"
+            android:label="@string/title_activity_behavior" >
+        </activity>
+        <activity
+            android:name=".SingleBehaviorActivity"
+            android:label="@string/title_activity_single_behavior" >
+        </activity>
+        <activity
+            android:name=".AddBehaviorActivity"
+            android:label="@string/title_activity_add_behavior" >
+        </activity>
     </application>
 
 </manifest>
