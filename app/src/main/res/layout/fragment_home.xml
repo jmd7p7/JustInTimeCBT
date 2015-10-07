@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#85A3FF">
+
+    <TextView
+        android:text="BEHAVIORS"
+        android:id="@+id/app_section_behavior_textView"
+        android:layout_marginTop="5dp"
+        style="@style/app_section"
+        />
+    <TextView
+        android:text="RATIONAL THOUGHT"
+        android:id="@+id/app_section_rational_thought_textView"
+        style="@style/app_section"
+        />
+    <TextView
+        android:text="MOTIVATION"
+        android:id="@+id/app_section_motivation_textView"
+        style="@style/app_section"
+        />
+    <TextView
+        android:text="GOALS"
+        android:id="@+id/app_section_goals_textView"
+        style="@style/app_section"
+        />
+</LinearLayout>

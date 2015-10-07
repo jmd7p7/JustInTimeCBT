@@ -9,24 +9,11 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".BehaviorActivity"
-            android:label="@string/title_activity_behavior" >
-        </activity>
-        <activity
-            android:name=".SingleBehaviorActivity"
-            android:label="@string/title_activity_single_behavior" >
-        </activity>
-        <activity
-            android:name=".AddBehaviorActivity"
-            android:label="@string/title_activity_add_behavior" >
         </activity>
     </application>
 

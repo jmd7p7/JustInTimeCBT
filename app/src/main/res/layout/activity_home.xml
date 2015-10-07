@@ -2,19 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#C2AD99">
 
-    <fragment
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:id="@+id/homeScreenFragment"
-        class="com.jmd2479.justintimecbt.HomeScreenFragment"/>
+        android:layout_height="match_parent" />
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/homeNavFragment"
-        class="com.jmd2479.justintimecbt.HomeNavFragment"/>
 </LinearLayout>

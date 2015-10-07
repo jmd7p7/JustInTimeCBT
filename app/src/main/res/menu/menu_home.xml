@@ -1,6 +1,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_get_help"
+        android:title="@string/action_get_help"
+        android:icon="@drawable/ic_action_get_help1"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_behaviors"
+        android:title="@string/action_behaviors"
+        android:icon="@drawable/ic_action_behavior"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_rational_thougt"
+        android:title="@string/action_rational_thought"
+        android:icon="@drawable/ic_action_rational_thought"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_motivation"
+        android:title="@string/action_motivation"
+        android:icon="@drawable/ic_action_motivation"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_goals"
+        android:title="@string/action_goals"
+        android:icon="@drawable/ic_action_goals"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
 </menu>

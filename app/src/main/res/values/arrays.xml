@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="app_sections">
+        <item>BEHAVIORS</item>
+        <item>RATIONAL THOUGHT</item>
+        <item>MOTIVATION</item>
+        <item>GOALS</item>
+    </string-array>
+</resources>

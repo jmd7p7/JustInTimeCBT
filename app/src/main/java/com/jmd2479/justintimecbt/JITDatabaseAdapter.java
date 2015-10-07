@@ -227,14 +227,12 @@ public class JITDatabaseAdapter  {
         public JITDatabaseHelper(Context context) {
 
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
-            Log.d("DBStuff", "JITDatabaseHelper constructor");
             this.context=context;
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
-                Log.d("DBStuff", "in begin onCreate");
                 db.execSQL(CREATE_THERAPIST_TABLE);
                 db.execSQL(CREATE_BEHAVIOR_TABLE);
                 db.execSQL(CREATE_TRIGGER_TABLE);
@@ -250,8 +248,6 @@ public class JITDatabaseAdapter  {
                 db.execSQL(CREATE_GOAL_TABLE);
                 db.execSQL(CREATE_ACHIEVEMENT_TABLE);
                 db.execSQL(CREATE_BENEFIT_TABLE);
-                Log.d("DBStuff", "in end onCreate");
-
             }
             catch(android.database.SQLException e){
                 Log.e("Database Exception", "onCreate: " + e.getMessage());
@@ -261,7 +257,6 @@ public class JITDatabaseAdapter  {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             try{
-                Log.d("DBStuff", "in begin onUpgrade");
                 db.execSQL(DROP_THERAPIST_TABLE);
                 db.execSQL(DROP_BEHAVIOR_TABLE);
                 db.execSQL(DROP_TRIGGER_TABLE);
@@ -277,7 +272,6 @@ public class JITDatabaseAdapter  {
                 db.execSQL(DROP_GOAL_TABLE);
                 db.execSQL(DROP_ACHIEVEMENT_TABLE);
                 db.execSQL(DROP_BENEFIT_TABLE);
-                Log.d("DBStuff", "in end onUpgrade");
                 onCreate(db);
             }
             catch(android.database.SQLException e){
