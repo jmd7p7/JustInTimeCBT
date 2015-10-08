@@ -13,12 +13,6 @@ public class BehaviorListFragment extends ListFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Toast.makeText(getActivity(), "In OnActivityCreated", Toast.LENGTH_LONG);
-        super.onActivityCreated(savedInstanceState);
-        dbAdapter = new JITDatabaseAdapter(getActivity());
-        String[] behaviors = (String[]) dbAdapter.getBehaviors().toArray();
-        ArrayAdapter<String> behaviorsaAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, behaviors);
-        setListAdapter(behaviorsaAdapter);
+
     }
 }

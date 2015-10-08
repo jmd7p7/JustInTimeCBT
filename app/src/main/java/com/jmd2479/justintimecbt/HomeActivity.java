@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeFragment.onAppSectionListener {
     JITDatabaseAdapter dbAdater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,4 +54,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onAppSectionSelected(int index) {
+        switch (index){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
 }

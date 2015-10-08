@@ -31,7 +31,7 @@ public class JITDatabaseAdapter  {
         return id;
     }
 
-    public ArrayList<String> getBehaviors(){
+/*    public ArrayList<String> getBehaviors(){
         ArrayList<String> result = new ArrayList<String>();
         int currentId;
         String currentName;
@@ -44,6 +44,23 @@ public class JITDatabaseAdapter  {
             currentId = cursor.getInt(indexForId);
             currentName = cursor.getString(indexForName);
             result.add(currentId + " " + currentName);
+        }
+        return result;
+    }*/
+
+    public ArrayList<Behavior> getBehaviors(){
+        ArrayList<Behavior> result = new ArrayList<Behavior>();
+        int currentId;
+        String currentName;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String[] columns = {helper.BEHAVIOR_ID, helper.BEHAVIOR_NAME};
+        Cursor cursor = db.query(helper.BEHAVIOR_TABLE, columns, null, null, null, null, null);
+        while(cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.BEHAVIOR_ID);
+            int indexForName = cursor.getColumnIndex(helper.BEHAVIOR_NAME);
+            currentId = cursor.getInt(indexForId);
+            currentName = cursor.getString(indexForName);
+            result.add(new Behavior(currentId, currentName));
         }
         return result;
     }
