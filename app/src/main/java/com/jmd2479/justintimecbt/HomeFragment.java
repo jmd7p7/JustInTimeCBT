@@ -1,7 +1,8 @@
 package com.jmd2479.justintimecbt;
 
 import android.app.Activity;
-import android.app.Fragment;
+//import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -19,14 +20,22 @@ import android.widget.Toast;
  * Created by Jonathan on 10/6/2015.
  */
 public class HomeFragment extends Fragment implements View.OnClickListener{
+    TextView behaviorTextView,rationalThoughtTextView, motivationTextView, goalsTextView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View theView =  inflater.inflate(R.layout.fragment_home, container, false);
 
         //onclick listeners for clicking on the text views
-        TextView behaviorTextView = (TextView) theView.findViewById(R.id.app_section_behavior_textView);
+        behaviorTextView = (TextView) theView.findViewById(R.id.app_section_behavior_textView);
         behaviorTextView.setOnClickListener(this);
+        rationalThoughtTextView = (TextView) theView.findViewById(R.id.app_section_rational_thought_textView);
+        rationalThoughtTextView.setOnClickListener(this);
+        motivationTextView = (TextView) theView.findViewById(R.id.app_section_motivation_textView);
+        motivationTextView.setOnClickListener(this);
+        goalsTextView = (TextView) theView.findViewById(R.id.app_section_goals_textView);
+        goalsTextView.setOnClickListener(this);
 
         return theView;
     }

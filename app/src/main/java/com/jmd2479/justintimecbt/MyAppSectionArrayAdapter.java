@@ -1,6 +1,7 @@
 package com.jmd2479.justintimecbt;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +30,11 @@ class MyAppSectionArrayAdater extends ArrayAdapter {
 
         View rowView = inflater.inflate(R.layout.app_section_list_element, parent, false);
 
-        TextView behaviorView = (TextView) rowView.findViewById(R.id.app_section_behavior_textView);
-        behaviorView.setText(values.get(position).behavior);
+        TextView appSectionNameTextView = (TextView) rowView.findViewById(R.id.app_section_name_textView);
+        appSectionNameTextView.setText(values.get(position).behavior);
+        TextView appSectionIdTextView = (TextView) rowView.findViewById(R.id.app_section_Id_textView);
+        appSectionIdTextView.setText(Integer.toString(values.get(position).behaviorId));
 
-        TextView descriptionView = (TextView) rowView.findViewById(R.id.app_section_Id_textView);
-        descriptionView.setText(values.get(position).behaviorId);
-        
         return rowView;
     }
 }
