@@ -2,35 +2,58 @@ package com.jmd2479.justintimecbt;
 
 //import android.app.FragmentManager;
 //import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
-public class HomeActivity extends AppCompatActivity implements HomeFragment.onAppSectionListener, BehaviorListFragment.onBehaviorSelectedListener{
-    JITDatabaseAdapter dbAdater;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        dbAdater = new JITDatabaseAdapter(this);
+public class HomeActivity extends AppCompatActivity implements HomeFragment.onAppSectionListener, BehaviorListFragment.onBehaviorSelectedListener, AddNewFragmentCreator{
+    private JITDatabaseAdapter dbAdater;
+    Intent intent;
+    Bundle extras;
 
+    @Override
+    protected void onCreate (Bundle savedInstanceState) {
+        dbAdater = new JITDatabaseAdapter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        FrameLayout topLayout = (FrameLayout) findViewById (R.id.main_fragment_container_top);
-        topLayout.setVisibility(View.GONE);
-        FrameLayout bottomLayout = (FrameLayout) findViewById (R.id.main_fragment_container_bottom);
-        bottomLayout.setVisibility(View.GONE);
+        intent = getIntent();
+        extras = intent.getExtras();
+        if(extras!=null){
+            if(extras.containsKey("HomeActivityIndex")){
+                displayFragment();
+            }
+        }
+        else{
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.main_fragment_container, homeFragment);
+            transaction.commit();
+        }
 
-        HomeFragment homeFragment = new HomeFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.main_fragment_container, homeFragment);
-        transaction.commit();
+    }
 
+    private void displayFragment() {
+        if(extras.getString("HomeActivityIndex").equals(getResources().getString(R.string.HOME_ACTIVITY_SELECTEDBEHAVIOR_INDEX))){
+            SelectedBehaviorFragment selectedBehaviorFragment = new SelectedBehaviorFragment();
+            Bundle args = new Bundle();
+            args.putString("BehaviorName", extras.getString("SelectedBehavior"));
+            args.putInt("BehaviorId", extras.getInt("BehaviorId"));
+            selectedBehaviorFragment.setArguments(args);
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     @Override
@@ -70,16 +93,25 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
     public void onAppSectionSelected(int index) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
+        AddNewFragment addNewFragment = new AddNewFragment();
+        Bundle addNewFragmentArgs = new Bundle();
         switch (index){
             case 0:
-                transaction.replace(R.id.main_fragment_container, new BehaviorListFragment());
+                Intent intent = new Intent(this, TwoSectionActivity.class);
+                intent.putExtra("TwoSectionActivityIndex", 0);
+                startActivity(intent);
+/*                transaction.add(R.id.two_section_main_container, new BehaviorListFragment());
+
+                addNewFragmentArgs.putString("TextForAddNewBtn", "Behavior");
+                addNewFragmentArgs.putInt("AppSectionIndex", 0);
+                addNewFragment.setArguments(addNewFragmentArgs);
+                topLayout.setVisibility(View.VISIBLE);
+                transaction.add(R.id.two_section_top_container, addNewFragment);
                 transaction.addToBackStack(null);
-                transaction.commit();
+                transaction.commit();*/
                 break;
             case 1:
-                NewBehaviorDialogFragment nbdf = new NewBehaviorDialogFragment();
-                FragmentManager fmm = getSupportFragmentManager();
-                nbdf.show(fmm, "NewBehavior!");
+
                 break;
             case 2:
                 break;
@@ -90,6 +122,7 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
 
     @Override
     public void onBehaviorSelected(int id, String behavior) {
+/*        Log.d("CCC", "In HomeActivty OnBehaviorSelected beginnign");
         SelectedBehaviorFragment selectedBehaviorFragment = new SelectedBehaviorFragment();
         Bundle args = new Bundle();
         args.putString("BehaviorName", behavior);
@@ -97,8 +130,20 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
         selectedBehaviorFragment.setArguments(args);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
+        Log.d("CCC", "In HomeActivty OnBehaviorSelected before repalce");
         transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
+        Log.d("CCC", "In HomeActivty OnBehaviorSelected after repalce");
         transaction.addToBackStack(null);
+        transaction.commit();*/
+    }
+
+    @Override
+    public void addAddNewFragmentToActivity() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
+/*        topLayout.setVisibility(View.VISIBLE);
+        transaction.add(R.id.main_fragment_container_top, new AddNewFragment());*/
         transaction.commit();
     }
 }

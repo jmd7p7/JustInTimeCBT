@@ -1,28 +1,24 @@
 package com.jmd2479.justintimecbt;
 
 import android.app.Activity;
-//import android.app.ListFragment;
-import android.support.v4.app.ListFragment;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
- * Created by Jonathan on 10/6/2015.
+ * Created by Jonathan on 10/11/2015.
  */
-public class BehaviorListFragment extends ListFragment {
+public class TriggerListFragment extends ListFragment {
     JITDatabaseAdapter dbAdapter;
-    ArrayList<ListItem> behaviors;
+    ArrayList<ListItem> triggers;
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        mCallback.onBehaviorSelected(behaviors.get(position).id, behaviors.get(position).name);
+        mCallback.onTriggerSelected(triggers.get(position).id, triggers.get(position).name);
     }
 
     @Override
@@ -31,18 +27,18 @@ public class BehaviorListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         dbAdapter = new JITDatabaseAdapter(getActivity());
-        behaviors = dbAdapter.getBehaviors();
+        //triggers = dbAdapter.getTriggersByBehaviorId();
 
-        setListAdapter(new MyAppSectionArrayAdater(getActivity(), behaviors));
+       // setListAdapter(new MyAppSectionArrayAdater(getActivity(), triggers));
 
 
     }
 
-    public interface onBehaviorSelectedListener{
-        public void onBehaviorSelected(int id, String behavior);
+    public interface onTriggerSelectedListener{
+        public void onTriggerSelected(int id, String trigger);
     }
 
-    onBehaviorSelectedListener mCallback;
+    onTriggerSelectedListener mCallback;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -50,7 +46,7 @@ public class BehaviorListFragment extends ListFragment {
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            mCallback = (onBehaviorSelectedListener) activity;
+            mCallback = (onTriggerSelectedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");

@@ -15,9 +15,9 @@ import java.util.ArrayList;
  */
 class MyAppSectionArrayAdater extends ArrayAdapter {
     private final Context context;
-    private final ArrayList<Behavior> values;
+    private final ArrayList<ListItem> values;
 
-    public MyAppSectionArrayAdater(Context context, ArrayList<Behavior> values) {
+    public MyAppSectionArrayAdater(Context context, ArrayList<ListItem> values) {
         super(context, R.layout.app_section_list_element, values);
         this.context = context;
         this.values = values;
@@ -31,9 +31,9 @@ class MyAppSectionArrayAdater extends ArrayAdapter {
         View rowView = inflater.inflate(R.layout.app_section_list_element, parent, false);
 
         TextView appSectionNameTextView = (TextView) rowView.findViewById(R.id.app_section_name_textView);
-        appSectionNameTextView.setText(values.get(position).behavior);
+        appSectionNameTextView.setText(values.get(position).name);
         TextView appSectionIdTextView = (TextView) rowView.findViewById(R.id.app_section_Id_textView);
-        appSectionIdTextView.setText(Integer.toString(values.get(position).behaviorId));
+        appSectionIdTextView.setText(Integer.toString(values.get(position).id));
 
         return rowView;
     }

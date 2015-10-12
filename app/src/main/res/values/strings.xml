@@ -13,6 +13,7 @@
     <string name="behaviorsBtnText">Behaviors</string>
     <string name="mainBackgroundColor">#222</string>
     <string name="title_activity_behavior">Behaviors</string>
+    <string name="HOME_ACTIVITY_SELECTEDBEHAVIOR_INDEX">2</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_single_behavior">SingleBehaviorActivity</string>
@@ -23,4 +24,6 @@
     <string name="behaviorNameLabel">Behavior Name:</string>
     <string name="addBtnText">Add</string>
     <string name="SelectedBehavior">BehaviorName</string>
+    <string name="addNewButtonType">addNewButtonType</string>
+    <string name="title_activity_two_section">TwoSectionActivity</string>
 </resources>
