@@ -35,7 +35,6 @@ public class BehaviorListFragment extends ListFragment {
 
         setListAdapter(new MyAppSectionArrayAdater(getActivity(), behaviors));
 
-
     }
 
     public interface onBehaviorSelectedListener{

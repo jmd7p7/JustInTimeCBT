@@ -26,4 +26,7 @@
     <string name="SelectedBehavior">BehaviorName</string>
     <string name="addNewButtonType">addNewButtonType</string>
     <string name="title_activity_two_section">TwoSectionActivity</string>
+
+    <!-- These are indicies used in switch statements to determine which view or activity to call-->
+    <string name="BEHAVIOR_INDEX">0</string>
 </resources>

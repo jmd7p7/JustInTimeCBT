@@ -6,4 +6,7 @@
         <item>MOTIVATION</item>
         <item>GOALS</item>
     </string-array>
+    <integer-array name="nav_indicies">
+        <item name="BEHAVIOR_INDEX">0</item>
+    </integer-array>
 </resources>
