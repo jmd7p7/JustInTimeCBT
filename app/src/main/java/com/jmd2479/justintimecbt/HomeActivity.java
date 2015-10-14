@@ -42,17 +42,19 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
     }
 
     private void displayFragment() {
-        if(extras.getString("HomeActivityIndex").equals(getResources().getString(R.string.HOME_ACTIVITY_SELECTEDBEHAVIOR_INDEX))){
-            SelectedBehaviorFragment selectedBehaviorFragment = new SelectedBehaviorFragment();
-            Bundle args = new Bundle();
-            args.putString("BehaviorName", extras.getString("SelectedBehavior"));
-            args.putInt("BehaviorId", extras.getInt("BehaviorId"));
-            selectedBehaviorFragment.setArguments(args);
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+        switch (extras.getInt("HomeActivityIndex")){
+            case R.string.HOME_ACTIVITY_SELECTED_BEHAVIOR_INDEX: //called form TwoSectionActivity onBehaviorSelected() method
+                SelectedBehaviorFragment selectedBehaviorFragment = new SelectedBehaviorFragment();
+                Bundle args = new Bundle();
+                args.putString("BehaviorName", extras.getString("SelectedBehavior"));
+                args.putInt("ParentId", extras.getInt("BehaviorId"));
+                selectedBehaviorFragment.setArguments(args);
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
         }
     }
 
@@ -90,32 +92,26 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
 
 
     @Override
+    //This method is called from HomeFragment using the interface onAppSelectionListener
+    //onAppSectionSelected will start a new TwoSectionActivity
+    //it will pass in an index corresponding to the section of the
+    //app the user wishes to navigate to
     public void onAppSectionSelected(int index) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         AddNewFragment addNewFragment = new AddNewFragment();
         Bundle addNewFragmentArgs = new Bundle();
         switch (index){
-            case 0:
+            case R.string.BEHAVIOR_SECTION_INDEX:
                 Intent intent = new Intent(this, TwoSectionActivity.class);
-                intent.putExtra("TwoSectionActivityIndex", 0);
+                intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_BEHAVIOR_INDEX);
                 startActivity(intent);
-/*                transaction.add(R.id.two_section_main_container, new BehaviorListFragment());
-
-                addNewFragmentArgs.putString("TextForAddNewBtn", "Behavior");
-                addNewFragmentArgs.putInt("AppSectionIndex", 0);
-                addNewFragment.setArguments(addNewFragmentArgs);
-                topLayout.setVisibility(View.VISIBLE);
-                transaction.add(R.id.two_section_top_container, addNewFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();*/
                 break;
-            case 1:
-
+            case R.string.RATIONAL_THOUGHT_SECTION_INDEX:
                 break;
-            case 2:
+            case R.string.MOTIVATION_SECTION_INDEX:
                 break;
-            case 3:
+            case R.string.GOALS_SECTION_INDEX:
                 break;
         }
     }

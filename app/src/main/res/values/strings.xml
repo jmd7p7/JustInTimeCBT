@@ -13,7 +13,7 @@
     <string name="behaviorsBtnText">Behaviors</string>
     <string name="mainBackgroundColor">#222</string>
     <string name="title_activity_behavior">Behaviors</string>
-    <string name="HOME_ACTIVITY_SELECTEDBEHAVIOR_INDEX">2</string>
+
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_single_behavior">SingleBehaviorActivity</string>
@@ -28,5 +28,22 @@
     <string name="title_activity_two_section">TwoSectionActivity</string>
 
     <!-- These are indicies used in switch statements to determine which view or activity to call-->
+    <string name="HOME_ACTIVITY_SELECTED_BEHAVIOR_INDEX">2</string>
+
+
+    <string name="BEHAVIOR_SECTION_INDEX">0</string>
+    <string name="RATIONAL_THOUGHT_SECTION_INDEX">1</string>
+    <string name="MOTIVATION_SECTION_INDEX">2</string>
+    <string name="GOALS_SECTION_INDEX">3</string>
+
+    <string name="TWO_SECTION_BEHAVIOR_INDEX">0</string>
+    <string name="TWO_SECTION_TRIGGER_INDEX">1</string>
+    <string name="TWO_SECTION_CONSEQUENCE_INDEX">2</string>
+
+    <!-- These are indicies used in switch statements to determine which new item type is to be created-->
+    <string name="NEW_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
+    <string name="NEW_ITEM_TYPE_TRIGGER_INDEX">1</string>
+
     <string name="BEHAVIOR_INDEX">0</string>
+    <string name="TRIGGER_INDEX">1</string>
 </resources>

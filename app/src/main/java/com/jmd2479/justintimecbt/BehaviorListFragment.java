@@ -15,14 +15,18 @@ import java.util.ArrayList;
 /**
  * Created by Jonathan on 10/6/2015.
  */
+
+//BehaviorListFragment is
 public class BehaviorListFragment extends ListFragment {
     JITDatabaseAdapter dbAdapter;
     ArrayList<ListItem> behaviors;
 
+
+    //This method calls the onBehaviorSelected method of the parent activity, TwoSectionActivity
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        mCallback.onBehaviorSelected(behaviors.get(position).id, behaviors.get(position).name);
+        mCallback.onBehaviorSelected(behaviors.get(position).getId(), behaviors.get(position).getName());
     }
 
     @Override
@@ -48,6 +52,7 @@ public class BehaviorListFragment extends ListFragment {
 
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
+        //
         try {
             mCallback = (onBehaviorSelectedListener) activity;
         } catch (ClassCastException e) {

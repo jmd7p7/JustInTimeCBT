@@ -37,10 +37,16 @@ public class SelectedBehaviorFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         int id = v.getId();
         switch (id){
+            case R.id.selected_behavior_textView:
+                break;
+            //For this case, start anew TwoSectionActivity
+            //The following items will be added to the args
+            // 'TwoSectionActivityIndex' - to tell the TwoSectionActivity which listfragment to call
+            // 'ParentId' - in this case, it will be the BehaviorId
             case R.id.selected_behavior_triggers_textView:
                 Intent intent = new Intent(getActivity(), TwoSectionActivity.class);
-                intent.putExtra("TwoSectionActivityIndex", 1);
-                intent.putExtra("BehaviorId", args.getInt("BehaviorId"));
+                intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_TRIGGER_INDEX);
+                intent.putExtra("ParentId", args.getInt("ParentId"));
                 intent.putExtra("BehaviorName", args.getString("BehaviorName"));
                 startActivity(intent);
         }

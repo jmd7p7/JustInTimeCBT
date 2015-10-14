@@ -60,20 +60,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
+    //This OnClick() method will call the HomeActivity's onAppSectionSelected method, passing
+    //in the index that corresponds to the section of the app the user wishes to navigate to
     public void onClick(View v) {
         int id = v.getId();
         switch (id){
             case R.id.app_section_behavior_textView:
-                mCallback.onAppSectionSelected(0);
+                mCallback.onAppSectionSelected(R.string.BEHAVIOR_SECTION_INDEX);
                 break;
             case R.id.app_section_rational_thought_textView:
-                mCallback.onAppSectionSelected(1);
+                mCallback.onAppSectionSelected(R.string.RATIONAL_THOUGHT_SECTION_INDEX);
                 break;
             case R.id.app_section_motivation_textView:
-                mCallback.onAppSectionSelected(2);
+                mCallback.onAppSectionSelected(R.string.MOTIVATION_SECTION_INDEX);
                 break;
             case R.id.app_section_goals_textView:
-                mCallback.onAppSectionSelected(3);
+                mCallback.onAppSectionSelected(R.string.GOALS_SECTION_INDEX);
                 break;
         }
     }

@@ -17,15 +17,13 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
     private EditText newItemTextField;
     private Bundle args;
 
-    private final static int BEHAVIOR_INDEX = 0;
-    private final static int TRIGGER_INDEX = 1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NORMAL, android.R.style.Theme_Material_Dialog_MinWidth);
 
     }
-
+    //NewItemDialogFragment is called by the AddNewFragment Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
         args = getArguments();
         //setup the dialog
         Dialog dialog = getDialog();
-        dialog.setTitle("Create New " + args.getString("NewItemType"));
+        dialog.setTitle("Create New " + args.getString("NewItemTitle"));
         dialog.setCanceledOnTouchOutside(false);
 
         return theView;
@@ -50,12 +48,12 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
+        Log.d("EEE", "In NewItemDialogFragment OnClick");
         int id = v.getId();
-        Log.d("EEE", "In NewItemDialogFragment OnClick before switch " + args.getInt("NewItemTypeIndex"));
         switch (id) {
             case R.id.createNewItemBtn:
-                switch (args.getInt("NewItemTypeIndex")) {
-                    case BEHAVIOR_INDEX:
+                switch (args.getInt("NewItemSelectedIndex")) {
+                    case R.string.NEW_ITEM_TYPE_BEHAVIOR_INDEX:
                         Log.d("EEE", "In NewItemDialogFragment OnClick Case BehaviorIndex");
                         if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
                             JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
@@ -63,9 +61,10 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
                             NewItemDialogFragment.this.dismiss();
                         }
                         break;
-                    case TRIGGER_INDEX:
+                    case R.string.NEW_ITEM_TYPE_TRIGGER_INDEX:
                         Log.d("EEE", "In NewItemDialogFragment OnClick Case TriggeriNdex");
                         if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
+                            Log.d("EEE", "In NewItemDialogFragment OnClick Case TriggeriNdex - in the if sttatment");
                             JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
                             String newTriggerName= newItemTextField.getText().toString();
                             int behaviorId = args.getInt("BehaviorId");

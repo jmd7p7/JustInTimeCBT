@@ -25,27 +25,42 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         Bundle args = new Bundle();
         extras = getIntent().getExtras();
         int index = extras.getInt("TwoSectionActivityIndex");
+        //The Following two fragments will be added to the twoSectionActivity
+        // 1) An addNewFragment will be added to the top section of the layout
+        //    The following bundle of information needs to be added to the args
+        //    - 'NewItemTitle' - the name of the item (for display purposes)
+        //    - 'DatabaseTableName' - the database table name associated with the item type
+        //    - 'ParentId' - If necessary, the Id of the parent item
+        //    - 'DatabaseParentTableName' If necessary, the database table name assoicated with the parent item type
+        //    - 'NewItemSelectedIndex' - used in the switch statement of the new item fragment to determine which new item type to create
+        // 2) A ListFragment of type that matches the item being displayed
         switch (index){
-            case 0:
+            case R.string.TWO_SECTION_BEHAVIOR_INDEX://Called by
+                // 1) NewItemFragment
                 setTitle("Behaviors");
                 addNewFragment = new AddNewFragment();
-                args.putString("NewItemType", "Behavior");
-                args.putInt("NewItemTypeId", 0);
+                args.putString("NewItemTitle", "Behavior");
+                args.putString("DatabaseTableName", "Behavior");
+                args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_BEHAVIOR_INDEX);
                 addNewFragment.setArguments(args);
                 transaction.replace(R.id.two_section_top_container, addNewFragment);
+                // 2) New ListFragment
                 BehaviorListFragment behaviorListFragment = new BehaviorListFragment();
                 transaction.replace(R.id.two_section_main_container, behaviorListFragment);
                 transaction.commit();
                 break;
-            case 1:
+            case R.string.TWO_SECTION_TRIGGER_INDEX:
                 setTitle(extras.getString("BehaviorName") + " Triggers");
+                // 1) NewItemFragment
                 addNewFragment = new AddNewFragment();
-                args.putString("NewItemType", "Trigger");
-                args.putInt("NewItemTypeId", 1);
-                args.putInt("BehaviorId", extras.getInt("BehaviorId"));
+                args.putString("NewItemTitle", "Trigger");
+                args.putString("DatabaseTableName", "Trigger");
+                args.putInt("ParentId", extras.getInt("ParentId"));
+                args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_TRIGGER_INDEX);
                 addNewFragment.setArguments(args);
                 transaction.add(R.id.two_section_top_container, addNewFragment);
                 TriggerListFragment triggerListFragment = new TriggerListFragment();
+                triggerListFragment.setArguments(args);
                 transaction.add(R.id.two_section_main_container, triggerListFragment);
                 transaction.commit();
                 break;
@@ -75,10 +90,11 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         return super.onOptionsItemSelected(item);
     }
 
+    //Calls the HomeActivity's DisplayFragment() method
     @Override
     public void onBehaviorSelected(int id, String behavior) {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("HomeActivityIndex", getResources().getString(R.string.HOME_ACTIVITY_SELECTEDBEHAVIOR_INDEX));
+        intent.putExtra("HomeActivityIndex", R.string.HOME_ACTIVITY_SELECTED_BEHAVIOR_INDEX);
         intent.putExtra("SelectedBehavior", behavior);
         intent.putExtra("BehaviorId", id);
         startActivity(intent);

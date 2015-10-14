@@ -31,9 +31,9 @@ class MyAppSectionArrayAdater extends ArrayAdapter {
         View rowView = inflater.inflate(R.layout.app_section_list_element, parent, false);
 
         TextView appSectionNameTextView = (TextView) rowView.findViewById(R.id.app_section_name_textView);
-        appSectionNameTextView.setText(values.get(position).name);
+        appSectionNameTextView.setText(values.get(position).getName());
         TextView appSectionIdTextView = (TextView) rowView.findViewById(R.id.app_section_Id_textView);
-        appSectionIdTextView.setText(Integer.toString(values.get(position).id));
+        appSectionIdTextView.setText(Integer.toString(values.get(position).getId()));
 
         return rowView;
     }

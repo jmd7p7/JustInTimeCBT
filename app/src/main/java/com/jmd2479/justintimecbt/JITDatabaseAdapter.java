@@ -50,6 +50,7 @@ public class JITDatabaseAdapter  {
 
     //Behavior-related SQL statements
     public long insertTriggerByBehaviorId(String name, int behaviorId){
+        Log.d("PPP", "In insertTriggerByBehavior");
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(helper.TR_BEHAVIOR_ID, behaviorId);
@@ -62,11 +63,12 @@ public class JITDatabaseAdapter  {
         ArrayList<ListItem> result = new ArrayList<ListItem>();
         int currentId;
         String currentName;
-        String query = "SELECT " + helper.TRIGGER_NAME + ", " +  helper.TRIGGER_ID + " FROM TRIGGER " +
+        String query = "SELECT " + helper.TRIGGER_TABLE + "." + helper.TRIGGER_NAME + ", " +  helper.TRIGGER_ID + " FROM Trigger " +
                 "INNER JOIN Behavior ON " + helper.TRIGGER_TABLE + "." + helper.TR_BEHAVIOR_ID + " = " +
-                helper.BEHAVIOR_TABLE + "." + helper.BEHAVIOR_ID;
+                helper.BEHAVIOR_TABLE + "." + helper.BEHAVIOR_ID + ";";
+        String s = "SELECT * FROM Trigger";
         SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(s, null);
         while (cursor.moveToNext()){
             int indexForId = cursor.getColumnIndex(helper.TRIGGER_ID);
             int indexForName = cursor.getColumnIndex(helper.TRIGGER_NAME);
