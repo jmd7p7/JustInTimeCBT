@@ -48,13 +48,11 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        Log.d("EEE", "In NewItemDialogFragment OnClick");
         int id = v.getId();
         switch (id) {
             case R.id.createNewItemBtn:
                 switch (args.getInt("NewItemSelectedIndex")) {
                     case R.string.NEW_ITEM_TYPE_BEHAVIOR_INDEX:
-                        Log.d("EEE", "In NewItemDialogFragment OnClick Case BehaviorIndex");
                         if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
                             JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
                             JITDB.insertBehavior(newItemTextField.getText().toString());
@@ -62,17 +60,23 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
                         }
                         break;
                     case R.string.NEW_ITEM_TYPE_TRIGGER_INDEX:
-                        Log.d("EEE", "In NewItemDialogFragment OnClick Case TriggeriNdex");
                         if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
-                            Log.d("EEE", "In NewItemDialogFragment OnClick Case TriggeriNdex - in the if sttatment");
                             JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
                             String newTriggerName= newItemTextField.getText().toString();
-                            int behaviorId = args.getInt("BehaviorId");
+                            int behaviorId = args.getInt("ParentId");
                             JITDB.insertTriggerByBehaviorId(newTriggerName, behaviorId);
                             NewItemDialogFragment.this.dismiss();
                         }
                         break;
-
+                    case R.string.NEW_ITEM_TYPE_CONSEQUENCE_INDEX:
+                        if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
+                            JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
+                            String newConsequence = newItemTextField.getText().toString();
+                            int behaviorId = args.getInt("ParentId");
+                            JITDB.insertConsequenceByBehaviorId(newConsequence, behaviorId);
+                            NewItemDialogFragment.this.dismiss();
+                        }
+                        break;
                 }
             case R.id.cancelNewItemBtn:
                 NewItemDialogFragment.this.dismiss();

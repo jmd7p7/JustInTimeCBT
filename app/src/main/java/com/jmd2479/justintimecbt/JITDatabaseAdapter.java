@@ -31,22 +31,6 @@ public class JITDatabaseAdapter  {
         return id;
     }
 
-/*    public ArrayList<String> getBehaviors(){
-        ArrayList<String> result = new ArrayList<String>();
-        int currentId;
-        String currentName;
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String[] columns = {helper.BEHAVIOR_ID, helper.BEHAVIOR_NAME};
-        Cursor cursor = db.query(helper.BEHAVIOR_TABLE, columns, null, null, null, null, null);
-        while(cursor.moveToNext()){
-            int indexForId = cursor.getColumnIndex(helper.BEHAVIOR_ID);
-            int indexForName = cursor.getColumnIndex(helper.BEHAVIOR_NAME);
-            currentId = cursor.getInt(indexForId);
-            currentName = cursor.getString(indexForName);
-            result.add(currentId + " " + currentName);
-        }
-        return result;
-    }*/
 
     //Behavior-related SQL statements
     public long insertTriggerByBehaviorId(String name, int behaviorId){
@@ -65,16 +49,45 @@ public class JITDatabaseAdapter  {
         String currentName;
         String query = "SELECT " + helper.TRIGGER_TABLE + "." + helper.TRIGGER_NAME + ", " +  helper.TRIGGER_ID + " FROM Trigger " +
                 "INNER JOIN Behavior ON " + helper.TRIGGER_TABLE + "." + helper.TR_BEHAVIOR_ID + " = " +
-                helper.BEHAVIOR_TABLE + "." + helper.BEHAVIOR_ID + ";";
-        String s = "SELECT * FROM Trigger";
+                helper.BEHAVIOR_TABLE + "." + helper.BEHAVIOR_ID + " WHERE " + helper.BEHAVIOR_TABLE + "." +
+                helper.BEHAVIOR_ID + " = " + behaviorId + ";";
         SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(s, null);
+        Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()){
             int indexForId = cursor.getColumnIndex(helper.TRIGGER_ID);
             int indexForName = cursor.getColumnIndex(helper.TRIGGER_NAME);
             currentId = cursor.getInt(indexForId);
             currentName = cursor.getString(indexForName);
             result.add(new Trigger(currentId, currentName));
+        }
+        return result;
+    }
+
+    public long insertConsequenceByBehaviorId(String name, int behaviorId){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(helper.TR_BEHAVIOR_ID, behaviorId);
+        contentValues.put(helper.CONSEQUENCE_MESSAGE, name);
+        long id = db.insert(helper.CONSEQUENCE_TABLE, helper.CO_THERAPIST_ID, contentValues);
+        return id;
+    }
+
+    public ArrayList<ListItem> getConsequencesByBehaviorId(int behaviorId){
+        ArrayList<ListItem> result = new ArrayList<ListItem>();
+        int currentId;
+        String currentName;
+        String query = "SELECT " + helper.CONSEQUENCE_MESSAGE + ", " +  helper.CONSEQUENCE_ID + " FROM Consequence " +
+                "INNER JOIN Behavior ON " + helper.CONSEQUENCE_TABLE + "." + helper.CO_BEHAVIOR_ID + " = " +
+                helper.BEHAVIOR_TABLE + "." + helper.BEHAVIOR_ID + " WHERE " + helper.BEHAVIOR_TABLE + "." +
+                helper.BEHAVIOR_ID + " = " + behaviorId + ";";
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.CONSEQUENCE_ID);
+            int indexForName = cursor.getColumnIndex(helper.CONSEQUENCE_MESSAGE);
+            currentId = cursor.getInt(indexForId);
+            currentName = cursor.getString(indexForName);
+            result.add(new Consequence(currentId, currentName));
         }
         return result;
     }

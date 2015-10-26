@@ -73,7 +73,17 @@ public class AddNewFragment extends Fragment implements View.OnClickListener{
                 fragmentManager = getFragmentManager();
                 newItemDialogFragment.show(fragmentManager, "AddNewTriggerDialogFragment");
                 break;
-
+            case R.string.NEW_ITEM_TYPE_CONSEQUENCE_INDEX:
+                newItemDialogFragment = new NewItemDialogFragment();
+                newArgs.putString("NewItemTitle", "Consequence");
+                newArgs.putString("DatabaseTableName", "Consequence");
+                newArgs.putString("DatabaseParentTableName", "Behavior");
+                newArgs.putInt("ParentId", args.getInt("ParentId"));
+                newArgs.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_CONSEQUENCE_INDEX);
+                newItemDialogFragment.setArguments(newArgs);
+                fragmentManager = getFragmentManager();
+                newItemDialogFragment.show(fragmentManager, "AddNewConsequenceDialogFragment");
+                break;
         }
     }
 }

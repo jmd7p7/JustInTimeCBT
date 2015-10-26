@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import routing.HomeActivityRouter;
+
 public class HomeActivity extends AppCompatActivity implements HomeFragment.onAppSectionListener, BehaviorListFragment.onBehaviorSelectedListener, AddNewFragmentCreator{
     private JITDatabaseAdapter dbAdater;
     Intent intent;
@@ -27,35 +29,12 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
 
         intent = getIntent();
         extras = intent.getExtras();
-        if(extras!=null){
-            if(extras.containsKey("HomeActivityIndex")){
-                displayFragment();
-            }
+        if(extras==null){ //HomeActivity is being called for the first time, application just starting up
+            extras = new Bundle();
+            extras.putInt("HomeActivityIndex", R.string.HOME_ACTIVITY_HOME_FRAGMENT_INDEX);
         }
-        else{
-            HomeFragment homeFragment = new HomeFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.main_fragment_container, homeFragment);
-            transaction.commit();
-        }
-
-    }
-
-    private void displayFragment() {
-        switch (extras.getInt("HomeActivityIndex")){
-            case R.string.HOME_ACTIVITY_SELECTED_BEHAVIOR_INDEX: //called form TwoSectionActivity onBehaviorSelected() method
-                SelectedBehaviorFragment selectedBehaviorFragment = new SelectedBehaviorFragment();
-                Bundle args = new Bundle();
-                args.putString("BehaviorName", extras.getString("SelectedBehavior"));
-                args.putInt("ParentId", extras.getInt("BehaviorId"));
-                selectedBehaviorFragment.setArguments(args);
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-                break;
-        }
+        HomeActivityRouter router = new HomeActivityRouter(extras, this);
+        router.handleRoute();
     }
 
     @Override

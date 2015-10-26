@@ -28,6 +28,7 @@
     <string name="title_activity_two_section">TwoSectionActivity</string>
 
     <!-- These are indicies used in switch statements to determine which view or activity to call-->
+    <string name="HOME_ACTIVITY_HOME_FRAGMENT_INDEX">1</string>
     <string name="HOME_ACTIVITY_SELECTED_BEHAVIOR_INDEX">2</string>
 
 
@@ -43,6 +44,7 @@
     <!-- These are indicies used in switch statements to determine which new item type is to be created-->
     <string name="NEW_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
     <string name="NEW_ITEM_TYPE_TRIGGER_INDEX">1</string>
+    <string name="NEW_ITEM_TYPE_CONSEQUENCE_INDEX">1</string>
 
     <string name="BEHAVIOR_INDEX">0</string>
     <string name="TRIGGER_INDEX">1</string>
