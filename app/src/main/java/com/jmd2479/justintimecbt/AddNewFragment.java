@@ -16,8 +16,6 @@ import android.widget.Button;
 public class AddNewFragment extends Fragment implements View.OnClickListener{
     Button addNewBtn;
     Bundle args;
-    private final static int BEHAVIOR_INDEX = 0;
-    private final static int TRIGGER_INDEX = 1;
 
     //AddNewFragment is called by the TwoSectionActivity.  This is the top section of the two section activity.
     //    The following bundle of information may/may not be retrieved from the args sent to this fragment

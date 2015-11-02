@@ -1,5 +1,6 @@
 package com.jmd2479.justintimecbt;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.jmd2479.justintimecbt.UI.OnSwipeTouchListener;
 
 import java.util.ArrayList;
 
@@ -16,15 +20,17 @@ import java.util.ArrayList;
 class MyAppSectionArrayAdater extends ArrayAdapter {
     private final Context context;
     private final ArrayList<ListItem> values;
+    ImCallBack imCallBack;
 
-    public MyAppSectionArrayAdater(Context context, ArrayList<ListItem> values) {
+    public MyAppSectionArrayAdater(Context context, ArrayList<ListItem> values, ImCallBack imCallBack) {
         super(context, R.layout.app_section_list_element, values);
         this.context = context;
         this.values = values;
+        this.imCallBack = imCallBack;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -32,9 +38,22 @@ class MyAppSectionArrayAdater extends ArrayAdapter {
 
         TextView appSectionNameTextView = (TextView) rowView.findViewById(R.id.app_section_name_textView);
         appSectionNameTextView.setText(values.get(position).getName());
-        TextView appSectionIdTextView = (TextView) rowView.findViewById(R.id.app_section_Id_textView);
-        appSectionIdTextView.setText(Integer.toString(values.get(position).getId()));
-
+        rowView.setOnTouchListener(new OnSwipeTouchListener(context) {
+            @Override
+            public void onSwipe(){
+                Toast.makeText(context, "Swiping...", Toast.LENGTH_SHORT).show();
+                imCallBack.OnListItemSwipe(position);
+            }
+            @Override
+            public void onClick(){
+                Toast.makeText(context, "Position:" + position, Toast.LENGTH_SHORT).show();
+                imCallBack.OnListItemClick(position);
+            }
+        });
         return rowView;
+    }
+    public interface ImCallBack{
+        public void OnListItemClick(int pos);
+        public void OnListItemSwipe(int pos);
     }
 }

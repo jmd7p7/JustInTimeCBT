@@ -31,8 +31,34 @@ public class JITDatabaseAdapter  {
         return id;
     }
 
+    public int deleteBehavior(int behaviorId){
+        int rowsDeleted;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String query = "DELETE FROM " + helper.BEHAVIOR_TABLE + " WHERE " +
+                helper.BEHAVIOR_ID + " = " + behaviorId + ";";
+        rowsDeleted= db.delete(helper.BEHAVIOR_TABLE, helper.BEHAVIOR_ID + "=" + behaviorId, null);
+        db.close();
+        return rowsDeleted;
+    }
 
-    //Behavior-related SQL statements
+    public ArrayList<ListItem> getBehaviors(){
+        ArrayList<ListItem> result = new ArrayList<ListItem>();
+        int currentId;
+        String currentName;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String[] columns = {helper.BEHAVIOR_ID, helper.BEHAVIOR_NAME};
+        Cursor cursor = db.query(helper.BEHAVIOR_TABLE, columns, null, null, null, null, null);
+        while(cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.BEHAVIOR_ID);
+            int indexForName = cursor.getColumnIndex(helper.BEHAVIOR_NAME);
+            currentId = cursor.getInt(indexForId);
+            currentName = cursor.getString(indexForName);
+            result.add(new Behavior(currentId, currentName));
+        }
+        return result;
+    }
+
+    //Trigger-related SQL statements
     public long insertTriggerByBehaviorId(String name, int behaviorId){
         Log.d("PPP", "In insertTriggerByBehavior");
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -63,6 +89,7 @@ public class JITDatabaseAdapter  {
         return result;
     }
 
+    //Consquence-related SQL statements
     public long insertConsequenceByBehaviorId(String name, int behaviorId){
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -92,19 +119,30 @@ public class JITDatabaseAdapter  {
         return result;
     }
 
-    public ArrayList<ListItem> getBehaviors(){
+    //Shutdown-related SQL statements
+    public long insertShutdownByTriggerId(String shutdownText, int triggerId){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(helper.SD_TRIGGER_ID, triggerId);
+        contentValues.put(helper.SHUTDOWN_MESSAGE, shutdownText);
+        long id = db.insert(helper.SHUTDOWN_TABLE, helper.SD_THERAPIST_ID, contentValues);
+        return id;
+    }
+
+    public ArrayList<ListItem> getShutdownsByTriggerId(int triggerId){
         ArrayList<ListItem> result = new ArrayList<ListItem>();
         int currentId;
-        String currentName;
+        String currentMessage;
+        String query = "SELECT " + helper.SHUTDOWN_MESSAGE + ", " +  helper.SHUTDOWN_ID + " FROM " +
+                helper.SHUTDOWN_TABLE + " WHERE " + helper.SD_TRIGGER_ID + " = " + triggerId + ";";
         SQLiteDatabase db = helper.getWritableDatabase();
-        String[] columns = {helper.BEHAVIOR_ID, helper.BEHAVIOR_NAME};
-        Cursor cursor = db.query(helper.BEHAVIOR_TABLE, columns, null, null, null, null, null);
-        while(cursor.moveToNext()){
-            int indexForId = cursor.getColumnIndex(helper.BEHAVIOR_ID);
-            int indexForName = cursor.getColumnIndex(helper.BEHAVIOR_NAME);
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.SHUTDOWN_ID);
+            int indexForMessage = cursor.getColumnIndex(helper.SHUTDOWN_MESSAGE);
             currentId = cursor.getInt(indexForId);
-            currentName = cursor.getString(indexForName);
-            result.add(new Behavior(currentId, currentName));
+            currentMessage = cursor.getString(indexForMessage);
+            result.add(new ShutDown(currentId, currentMessage));
         }
         return result;
     }

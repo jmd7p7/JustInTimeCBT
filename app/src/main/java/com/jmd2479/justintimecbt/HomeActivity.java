@@ -16,7 +16,7 @@ import android.widget.FrameLayout;
 
 import routing.HomeActivityRouter;
 
-public class HomeActivity extends AppCompatActivity implements HomeFragment.onAppSectionListener, BehaviorListFragment.onBehaviorSelectedListener, AddNewFragmentCreator{
+public class HomeActivity extends AppCompatActivity implements HomeFragment.onAppSectionListener, AddNewFragmentCreator{
     private JITDatabaseAdapter dbAdater;
     Intent intent;
     Bundle extras;
@@ -95,22 +95,6 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
         }
     }
 
-    @Override
-    public void onBehaviorSelected(int id, String behavior) {
-/*        Log.d("CCC", "In HomeActivty OnBehaviorSelected beginnign");
-        SelectedBehaviorFragment selectedBehaviorFragment = new SelectedBehaviorFragment();
-        Bundle args = new Bundle();
-        args.putString("BehaviorName", behavior);
-        args.putInt("BehaviorId", id);
-        selectedBehaviorFragment.setArguments(args);
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        Log.d("CCC", "In HomeActivty OnBehaviorSelected before repalce");
-        transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
-        Log.d("CCC", "In HomeActivty OnBehaviorSelected after repalce");
-        transaction.addToBackStack(null);
-        transaction.commit();*/
-    }
 
     @Override
     public void addAddNewFragmentToActivity() {

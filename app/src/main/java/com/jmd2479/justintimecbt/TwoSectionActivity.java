@@ -15,7 +15,8 @@ import android.widget.Toast;
 import routing.TwoSectionActivityRouter;
 
 public class TwoSectionActivity extends AppCompatActivity implements BehaviorListFragment.onBehaviorSelectedListener,
-        TriggerListFragment.onTriggerSelectedListener, ConsequenceListFragment.onConsequenceSelectedListener {
+        TriggerListFragment.onTriggerSelectedListener, ConsequenceListFragment.onConsequenceSelectedListener,
+        ShutdownListFragment.onShutdownSelectedListener{
     private FragmentManager fm;
     private AddNewFragment addNewFragment;
     private Bundle extras;
@@ -53,21 +54,41 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
 
     //Calls the HomeActivity's DisplayFragment() method
     @Override
-    public void onBehaviorSelected(int id, String behavior) {
+    public void onBehaviorSelected(Behavior behavior) {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("HomeActivityIndex", R.string.HOME_ACTIVITY_SELECTED_BEHAVIOR_INDEX);
-        intent.putExtra("SelectedBehavior", behavior);
-        intent.putExtra("BehaviorId", id);
+        intent.putExtra("SelectedBehavior", behavior.getName());
+        intent.putExtra("BehaviorId", behavior.getId());
         startActivity(intent);
     }
 
     @Override
-    public void onTriggerSelected(int id, String trigger) {
-        Toast.makeText(this, "You clicked on a trigger!", Toast.LENGTH_LONG);
+    public void onBehaviorEdit(Behavior behavior){
+        Bundle newArgs = new Bundle();
+        ChangeItemDialogFragment changeItemDialogFragment = new ChangeItemDialogFragment();
+        newArgs.putString("EditItemType", "Behavior");
+        newArgs.putString("EditItemText", behavior.getName());
+        newArgs.putInt("EditItemId", behavior.getId());
+        newArgs.putString("DBTable", "Behavior");
+        newArgs.putInt("EditItemTypeIndex", R.string.EDIT_ITEM_TYPE_BEHAVIOR_INDEX);
+        changeItemDialogFragment.setArguments(newArgs);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        changeItemDialogFragment.show(fragmentManager, "AddNewBehaviorDialogFragment");
     }
 
     @Override
-    public void onConsequenceSelected(int id, String trigger) {
-        Toast.makeText(this, "You clicked on a consequence!", Toast.LENGTH_LONG);
+    public void onTriggerSelected(Trigger selectedTrigger) {
+        TwoSectionActivityRouter router = new TwoSectionActivityRouter(extras, this);
+        router.handleRoute();
+    }
+
+    @Override
+    public void onConsequenceSelected(Consequence selectedConsequence) {
+        Toast.makeText(this, "You clicked on a consequence!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onShutdownSelected(ShutDown selectedShutdown) {
+        Toast.makeText(this, "You clicked on a ShutDown!", Toast.LENGTH_LONG).show();
     }
 }

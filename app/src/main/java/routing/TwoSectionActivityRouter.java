@@ -54,7 +54,18 @@ public class TwoSectionActivityRouter {
                 //Destination Activity: TwoSectionActivity
                 displayConsequence(fm, transaction, addNewFragment);
                 break;
+            case R.string.TWO_SECTION_SHUTDOWN_INDEX:
+                //Calling Fragment: TriggerListFragment
+                //Calling Activity: TwoSectionActivity
+                //Destination Fragment: ShutdownListFragment
+                //Destination Activity: TwoSectionActivity
+                displayShutdowns();
+                break;
         }
+    }
+
+    private void displayShutdowns() {
+
     }
 
 

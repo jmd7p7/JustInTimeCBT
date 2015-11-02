@@ -6,6 +6,7 @@ import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,7 +27,8 @@ public class BehaviorListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        mCallback.onBehaviorSelected(behaviors.get(position).getId(), behaviors.get(position).getName());
+        mCallback.onBehaviorSelected((Behavior) behaviors.get(position));
+
     }
 
     @Override
@@ -37,12 +39,22 @@ public class BehaviorListFragment extends ListFragment {
         dbAdapter = new JITDatabaseAdapter(getActivity());
         behaviors = dbAdapter.getBehaviors();
 
-        setListAdapter(new MyAppSectionArrayAdater(getActivity(), behaviors));
+        setListAdapter(new MyAppSectionArrayAdater(getActivity(), behaviors, new MyAppSectionArrayAdater.ImCallBack() {
+            @Override
+            public void OnListItemClick(int pos) {
+                mCallback.onBehaviorSelected((Behavior) behaviors.get(pos));
+            }
+            @Override
+            public void OnListItemSwipe(int pos) {
+                mCallback.onBehaviorEdit((Behavior) behaviors.get(pos));
+            }
+        }));
 
     }
 
     public interface onBehaviorSelectedListener{
-        public void onBehaviorSelected(int id, String behavior);
+        public void onBehaviorSelected(Behavior behavior);
+        public void onBehaviorEdit(Behavior behavior);
     }
 
     onBehaviorSelectedListener mCallback;

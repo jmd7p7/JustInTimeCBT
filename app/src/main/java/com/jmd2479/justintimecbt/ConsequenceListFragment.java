@@ -22,17 +22,27 @@ public class ConsequenceListFragment extends ListFragment {
         receivedArgs = getArguments();
         dbAdapter = new JITDatabaseAdapter(getActivity());
         consequences = dbAdapter.getConsequencesByBehaviorId(receivedArgs.getInt("ParentId"));
-        setListAdapter(new MyAppSectionArrayAdater(getActivity(), consequences));
+        setListAdapter(new MyAppSectionArrayAdater(getActivity(), consequences, new MyAppSectionArrayAdater.ImCallBack() {
+            @Override
+            public void OnListItemClick(int pos) {
+                mCallback.onConsequenceSelected((Consequence) consequences.get(pos));
+            }
+
+            @Override
+            public void OnListItemSwipe(int pos) {
+
+            }
+        }));
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        mCallback.onConsequenceSelected(consequences.get(position).getId(), consequences.get(position).getName());
+        mCallback.onConsequenceSelected((Consequence) consequences.get(position));
     }
 
     public interface onConsequenceSelectedListener{
-        public void onConsequenceSelected(int id, String trigger);
+        public void onConsequenceSelected(Consequence selectedConsequence);
     }
 
     onConsequenceSelectedListener mCallback;
