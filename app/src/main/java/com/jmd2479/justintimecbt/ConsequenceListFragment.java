@@ -30,7 +30,7 @@ public class ConsequenceListFragment extends ListFragment {
 
             @Override
             public void OnListItemSwipe(int pos) {
-
+                mCallback.onConsequenceEdit((Consequence) consequences.get(pos));
             }
         }));
     }
@@ -43,6 +43,7 @@ public class ConsequenceListFragment extends ListFragment {
 
     public interface onConsequenceSelectedListener{
         public void onConsequenceSelected(Consequence selectedConsequence);
+        public void onConsequenceEdit(Consequence selectedConsequence);
     }
 
     onConsequenceSelectedListener mCallback;

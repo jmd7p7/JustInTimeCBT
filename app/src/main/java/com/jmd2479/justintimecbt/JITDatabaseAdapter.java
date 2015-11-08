@@ -34,8 +34,6 @@ public class JITDatabaseAdapter  {
     public int deleteBehavior(int behaviorId){
         int rowsDeleted;
         SQLiteDatabase db = helper.getWritableDatabase();
-        String query = "DELETE FROM " + helper.BEHAVIOR_TABLE + " WHERE " +
-                helper.BEHAVIOR_ID + " = " + behaviorId + ";";
         rowsDeleted= db.delete(helper.BEHAVIOR_TABLE, helper.BEHAVIOR_ID + "=" + behaviorId, null);
         db.close();
         return rowsDeleted;
@@ -89,6 +87,14 @@ public class JITDatabaseAdapter  {
         return result;
     }
 
+    public int deleteTrigger(int triggerId){
+        int rowsDeleted;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        rowsDeleted= db.delete(helper.TRIGGER_TABLE, helper.TRIGGER_ID + "=" + triggerId, null);
+        db.close();
+        return rowsDeleted;
+    }
+
     //Consquence-related SQL statements
     public long insertConsequenceByBehaviorId(String name, int behaviorId){
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -117,6 +123,14 @@ public class JITDatabaseAdapter  {
             result.add(new Consequence(currentId, currentName));
         }
         return result;
+    }
+
+    public int deleteConsequence(int consequenceId){
+        int rowsDeleted;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        rowsDeleted= db.delete(helper.CONSEQUENCE_TABLE, helper.CONSEQUENCE_ID + "=" + consequenceId, null);
+        db.close();
+        return rowsDeleted;
     }
 
     //Shutdown-related SQL statements

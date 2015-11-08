@@ -10,6 +10,7 @@ import com.jmd2479.justintimecbt.AddNewFragment;
 import com.jmd2479.justintimecbt.BehaviorListFragment;
 import com.jmd2479.justintimecbt.ConsequenceListFragment;
 import com.jmd2479.justintimecbt.R;
+import com.jmd2479.justintimecbt.ShutdownListFragment;
 import com.jmd2479.justintimecbt.TriggerListFragment;
 
 /**
@@ -59,13 +60,25 @@ public class TwoSectionActivityRouter {
                 //Calling Activity: TwoSectionActivity
                 //Destination Fragment: ShutdownListFragment
                 //Destination Activity: TwoSectionActivity
-                displayShutdowns();
+                displayShutdowns(fm, transaction, addNewFragment);
                 break;
         }
     }
 
-    private void displayShutdowns() {
-
+    private void displayShutdowns(FragmentManager fm,
+                                  android.support.v4.app.FragmentTransaction transaction,
+                                  AddNewFragment addNewFragment) {
+        context.setTitle(extras.getString("BehaviorName") + " Triggers");
+        args.putString("NewItemTitle", "Shutdown");
+        args.putString("DatabaseTableName", "Shutdown");
+        args.putInt("ParentId", extras.getInt("ParentId"));
+        args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_SHUTDOWN_INDEX);
+        addNewFragment.setArguments(args);
+        transaction.add(R.id.two_section_top_container, addNewFragment);
+        ShutdownListFragment shutdownListFragment = new ShutdownListFragment();
+        triggerListFragment.setArguments(args);
+        transaction.add(R.id.two_section_main_container, triggerListFragment);
+        transaction.commit();
     }
 
 

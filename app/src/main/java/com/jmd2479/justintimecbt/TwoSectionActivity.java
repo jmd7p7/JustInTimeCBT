@@ -73,18 +73,47 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         newArgs.putInt("EditItemTypeIndex", R.string.EDIT_ITEM_TYPE_BEHAVIOR_INDEX);
         changeItemDialogFragment.setArguments(newArgs);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        changeItemDialogFragment.show(fragmentManager, "AddNewBehaviorDialogFragment");
+        changeItemDialogFragment.show(fragmentManager, "EditBehaviorDialogFragment");
     }
 
     @Override
     public void onTriggerSelected(Trigger selectedTrigger) {
+        extras.putInt("TwoSectionActivityIndex",R.string.TWO_SECTION_SHUTDOWN_INDEX);
         TwoSectionActivityRouter router = new TwoSectionActivityRouter(extras, this);
         router.handleRoute();
     }
 
     @Override
+    public void onTriggerEdit(Trigger selectedTrigger) {
+        Bundle newArgs = new Bundle();
+        ChangeItemDialogFragment changeItemDialogFragment = new ChangeItemDialogFragment();
+        newArgs.putString("EditItemType", "Trigger");
+        newArgs.putString("EditItemText", selectedTrigger.getName());
+        newArgs.putInt("EditItemId", selectedTrigger.getId());
+        newArgs.putString("DBTable", "Trigger");
+        newArgs.putInt("EditItemTypeIndex", R.string.EDIT_ITEM_TYPE_TRIGGER_INDEX);
+        changeItemDialogFragment.setArguments(newArgs);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        changeItemDialogFragment.show(fragmentManager, "EditTriggerDialogFragment");
+    }
+
+    @Override
     public void onConsequenceSelected(Consequence selectedConsequence) {
         Toast.makeText(this, "You clicked on a consequence!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onConsequenceEdit(Consequence selectedConsequence) {
+        Bundle newArgs = new Bundle();
+        ChangeItemDialogFragment changeItemDialogFragment = new ChangeItemDialogFragment();
+        newArgs.putString("EditItemType", "Consequence");
+        newArgs.putString("EditItemText", selectedConsequence.getName());
+        newArgs.putInt("EditItemId", selectedConsequence.getId());
+        newArgs.putString("DBTable", "Consequence");
+        newArgs.putInt("EditItemTypeIndex", R.string.EDIT_ITEM_TYPE_CONSEQUENCE_INDEX);
+        changeItemDialogFragment.setArguments(newArgs);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        changeItemDialogFragment.show(fragmentManager, "EditConsequenceDialogFragment");
     }
 
     @Override

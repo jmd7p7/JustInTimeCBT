@@ -53,12 +53,21 @@ public class ChangeItemDialogFragment extends DialogFragment implements View.OnC
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
         switch (id){
             case R.id.deleteItemBtn:
                 switch (args.getInt("EditItemTypeIndex")){
                     case R.string.EDIT_ITEM_TYPE_BEHAVIOR_INDEX:
-                        JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
                         JITDB.deleteBehavior(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_TRIGGER_INDEX:
+                        JITDB.deleteTrigger(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_CONSEQUENCE_INDEX:
+                        JITDB.deleteConsequence(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
                         break;
                 }
             break;

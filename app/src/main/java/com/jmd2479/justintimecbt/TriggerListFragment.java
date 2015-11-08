@@ -37,13 +37,14 @@ public class TriggerListFragment extends ListFragment {
 
             @Override
             public void OnListItemSwipe(int pos) {
-
+                mCallback.onTriggerEdit((Trigger) triggers.get(pos));
             }
         }));
     }
 
     public interface onTriggerSelectedListener{
         public void onTriggerSelected(Trigger selectedTrigger);
+        public void onTriggerEdit(Trigger selectedTrigger);
     }
 
     onTriggerSelectedListener mCallback;

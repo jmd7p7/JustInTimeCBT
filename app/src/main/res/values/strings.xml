@@ -44,7 +44,8 @@
     <!-- These are indicies used in switch statements to determine which new item type is to be created-->
     <string name="NEW_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
     <string name="NEW_ITEM_TYPE_TRIGGER_INDEX">1</string>
-    <string name="NEW_ITEM_TYPE_CONSEQUENCE_INDEX">1</string>
+    <string name="NEW_ITEM_TYPE_CONSEQUENCE_INDEX">2</string>
+    <string name="NEW_ITEM_TYPE_SHUTDOWN_INDEX">3</string>
 
     <string name="EDIT_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
     <string name="EDIT_ITEM_TYPE_TRIGGER_INDEX">1</string>
