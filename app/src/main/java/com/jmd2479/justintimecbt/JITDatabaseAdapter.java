@@ -57,12 +57,11 @@ public class JITDatabaseAdapter  {
     }
 
     //Trigger-related SQL statements
-    public long insertTriggerByBehaviorId(String name, int behaviorId){
-        Log.d("PPP", "In insertTriggerByBehavior");
+    public long insertTriggerByBehaviorId(Trigger trigger){
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(helper.TR_BEHAVIOR_ID, behaviorId);
-        contentValues.put(helper.TRIGGER_NAME, name);
+        contentValues.put(helper.TR_BEHAVIOR_ID, trigger.getParentId());
+        contentValues.put(helper.TRIGGER_NAME, trigger.getName());
         long id = db.insert(helper.TRIGGER_TABLE, helper.TR_THERAPIST_ID, contentValues);
         return id;
     }
@@ -96,11 +95,11 @@ public class JITDatabaseAdapter  {
     }
 
     //Consquence-related SQL statements
-    public long insertConsequenceByBehaviorId(String name, int behaviorId){
+    public long insertConsequenceByBehaviorId(Consequence consequence){
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(helper.TR_BEHAVIOR_ID, behaviorId);
-        contentValues.put(helper.CONSEQUENCE_MESSAGE, name);
+        contentValues.put(helper.TR_BEHAVIOR_ID, consequence.getParentId());
+        contentValues.put(helper.CONSEQUENCE_MESSAGE, consequence.getName());
         long id = db.insert(helper.CONSEQUENCE_TABLE, helper.CO_THERAPIST_ID, contentValues);
         return id;
     }
@@ -157,6 +156,34 @@ public class JITDatabaseAdapter  {
             currentId = cursor.getInt(indexForId);
             currentMessage = cursor.getString(indexForMessage);
             result.add(new ShutDown(currentId, currentMessage));
+        }
+        return result;
+    }
+
+    //Rationalization-related SQL statements
+    public long insertRationalizationByBehaviorId(Rationalization rationalization){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(helper.RA_BEHAVIOR_ID, rationalization.getParentId());
+        contentValues.put(helper.RATIONALIZATION_MESSAGE, rationalization.getName());
+        long id = db.insert(helper.RATIONALIZATION_TABLE, helper.TR_THERAPIST_ID, contentValues);
+        return id;
+    }
+
+    public ArrayList<ListItem> getRationalizationsByBehaviorId(int behaviorId){
+        ArrayList<ListItem> result = new ArrayList<ListItem>();
+        int currentId;
+        String currentName;
+        String query = "SELECT " + helper.RATIONALIZATION_MESSAGE + ", " +  helper.RATIONALIZATION_ID + " FROM Rationalization " +
+                "WHERE " + helper.RA_BEHAVIOR_ID + " = " + behaviorId + ";";
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.RATIONALIZATION_ID);
+            int indexForName = cursor.getColumnIndex(helper.RATIONALIZATION_MESSAGE);
+            currentId = cursor.getInt(indexForId);
+            currentName = cursor.getString(indexForName);
+            result.add(new Rationalization(currentId, currentName));
         }
         return result;
     }

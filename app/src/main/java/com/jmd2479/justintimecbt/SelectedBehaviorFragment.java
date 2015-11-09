@@ -25,6 +25,7 @@ import routing.SelectedBehaviorFragmentRouter;
 public class SelectedBehaviorFragment extends Fragment implements View.OnClickListener{
     private TextView triggerTextView;
     private TextView consequenceTextView;
+    private TextView rationalizationTextView;
     private Bundle args;
     @Nullable
     @Override
@@ -40,6 +41,9 @@ public class SelectedBehaviorFragment extends Fragment implements View.OnClickLi
 
         consequenceTextView = (TextView) theView.findViewById(R.id.selected_behavior_consequences_textView);
         consequenceTextView.setOnClickListener(this);
+
+        rationalizationTextView = (TextView) theView.findViewById(R.id.selected_behavior_rationalizations_textView);
+        rationalizationTextView.setOnClickListener(this);
 
         return theView;
     }

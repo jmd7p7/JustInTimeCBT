@@ -41,15 +41,17 @@
     <string name="TWO_SECTION_TRIGGER_INDEX">1</string>
     <string name="TWO_SECTION_CONSEQUENCE_INDEX">2</string>
     <string name="TWO_SECTION_SHUTDOWN_INDEX">3</string>
+    <string name="TWO_SECTION_RATIONALIZATION_INDEX">4</string>
     <!-- These are indicies used in switch statements to determine which new item type is to be created-->
     <string name="NEW_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
     <string name="NEW_ITEM_TYPE_TRIGGER_INDEX">1</string>
     <string name="NEW_ITEM_TYPE_CONSEQUENCE_INDEX">2</string>
     <string name="NEW_ITEM_TYPE_SHUTDOWN_INDEX">3</string>
+    <string name="NEW_ITEM_TYPE_RATIONALIZATION_INDEX">4</string>
 
     <string name="EDIT_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
     <string name="EDIT_ITEM_TYPE_TRIGGER_INDEX">1</string>
-    <string name="EDIT_ITEM_TYPE_CONSEQUENCE_INDEX">1</string>
+    <string name="EDIT_ITEM_TYPE_CONSEQUENCE_INDEX">2</string>
 
     <string name="BEHAVIOR_INDEX">0</string>
     <string name="TRIGGER_INDEX">1</string>

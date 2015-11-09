@@ -1,5 +1,6 @@
 package com.jmd2479.justintimecbt;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 /**
@@ -22,6 +23,18 @@ public abstract class ListItem {
         this.name = name;
         this.id = id;
         this.parentId = -1;
+        this.therapistId = -1;
+    }
+
+    public ListItem(String name, int parentId){
+        //InvalidParameterException is thrown if the name argument is null or the empty string
+        //Without the name field the list item is useless
+        if(name == null || name.isEmpty()){
+            throw new InvalidParameterException("Rationalization must have some text.");
+        }
+        this.name = name;
+        this.id = -1;
+        this.parentId = parentId;
         this.therapistId = -1;
     }
 

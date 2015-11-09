@@ -10,6 +10,7 @@ import com.jmd2479.justintimecbt.AddNewFragment;
 import com.jmd2479.justintimecbt.BehaviorListFragment;
 import com.jmd2479.justintimecbt.ConsequenceListFragment;
 import com.jmd2479.justintimecbt.R;
+import com.jmd2479.justintimecbt.RationalizationListFragment;
 import com.jmd2479.justintimecbt.ShutdownListFragment;
 import com.jmd2479.justintimecbt.TriggerListFragment;
 
@@ -62,37 +63,47 @@ public class TwoSectionActivityRouter {
                 //Destination Activity: TwoSectionActivity
                 displayShutdowns(fm, transaction, addNewFragment);
                 break;
+            case R.string.TWO_SECTION_RATIONALIZATION_INDEX:
+                //Calling Fragment: SelectedBehaviorFragment
+                //Calling Activity: HomeActivity
+                //Destination Fragment: RationalizationListFragment
+                //Destination Activity: TwoSectionActivity
+                displayRationalizations(fm, transaction, addNewFragment);
+                break;
         }
+    }
+
+    private void displayRationalizations(FragmentManager fm,
+                                         android.support.v4.app.FragmentTransaction transaction,
+                                         AddNewFragment addNewFragment) {
+        context.setTitle(extras.getString("BehaviorName") + " Rationalizations");
+        args.putString("NewItemTitle", "Rationalization");
+        args.putString("DatabaseTableName", "Rationalization");
+        args.putInt("ParentId", extras.getInt("ParentId"));
+        args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_RATIONALIZATION_INDEX);
+        addNewFragment.setArguments(args);
+        transaction.add(R.id.two_section_top_container, addNewFragment);
+        RationalizationListFragment rationalizationListFragment = new RationalizationListFragment();
+        rationalizationListFragment.setArguments(args);
+        transaction.add(R.id.two_section_main_container, rationalizationListFragment);
+        transaction.addToBackStack("rationalizations");
+        transaction.commit();
     }
 
     private void displayShutdowns(FragmentManager fm,
                                   android.support.v4.app.FragmentTransaction transaction,
                                   AddNewFragment addNewFragment) {
-        context.setTitle(extras.getString("BehaviorName") + " Triggers");
+        context.setTitle(extras.getString("TriggerName") + " Shutdowns");
         args.putString("NewItemTitle", "Shutdown");
         args.putString("DatabaseTableName", "Shutdown");
         args.putInt("ParentId", extras.getInt("ParentId"));
         args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_SHUTDOWN_INDEX);
         addNewFragment.setArguments(args);
-        transaction.add(R.id.two_section_top_container, addNewFragment);
-        ShutdownListFragment shutdownListFragment = new ShutdownListFragment();
-        triggerListFragment.setArguments(args);
-        transaction.add(R.id.two_section_main_container, triggerListFragment);
-        transaction.commit();
-    }
-
-
-    private void displayBehavior(FragmentManager fm,
-                                 android.support.v4.app.FragmentTransaction transaction,
-                                 AddNewFragment addNewFragment) {
-        context.setTitle("Behaviors");
-        args.putString("NewItemTitle", "Behavior");
-        args.putString("DatabaseTableName", "Behavior");
-        args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_BEHAVIOR_INDEX);
-        addNewFragment.setArguments(args);
         transaction.replace(R.id.two_section_top_container, addNewFragment);
-        BehaviorListFragment behaviorListFragment = new BehaviorListFragment();
-        transaction.replace(R.id.two_section_main_container, behaviorListFragment);
+        ShutdownListFragment shutdownListFragment = new ShutdownListFragment();
+        shutdownListFragment.setArguments(args);
+        transaction.replace(R.id.two_section_main_container, shutdownListFragment);
+        transaction.addToBackStack("shutdowns");
         transaction.commit();
     }
 
@@ -109,8 +120,25 @@ public class TwoSectionActivityRouter {
         TriggerListFragment triggerListFragment = new TriggerListFragment();
         triggerListFragment.setArguments(args);
         transaction.add(R.id.two_section_main_container, triggerListFragment);
+        transaction.addToBackStack("triggers");
         transaction.commit();
     }
+
+    private void displayBehavior(FragmentManager fm,
+                                 android.support.v4.app.FragmentTransaction transaction,
+                                 AddNewFragment addNewFragment) {
+        context.setTitle("Behaviors");
+        args.putString("NewItemTitle", "Behavior");
+        args.putString("DatabaseTableName", "Behavior");
+        args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_BEHAVIOR_INDEX);
+        addNewFragment.setArguments(args);
+        transaction.replace(R.id.two_section_top_container, addNewFragment);
+        BehaviorListFragment behaviorListFragment = new BehaviorListFragment();
+        transaction.replace(R.id.two_section_main_container, behaviorListFragment);
+        transaction.addToBackStack("Behaviors");
+        transaction.commit();
+    }
+
 
     private void displayConsequence(FragmentManager fm, FragmentTransaction transaction, AddNewFragment addNewFragment) {
         context.setTitle(extras.getString("BehaviorName") + " Consequences");

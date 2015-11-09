@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.security.InvalidParameterException;
 
 /**
  * Created by Jonathan on 10/11/2015.
@@ -62,18 +65,50 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
                     case R.string.NEW_ITEM_TYPE_TRIGGER_INDEX:
                         if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
                             JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
-                            String newTriggerName= newItemTextField.getText().toString();
-                            int behaviorId = args.getInt("ParentId");
-                            JITDB.insertTriggerByBehaviorId(newTriggerName, behaviorId);
+                            try {
+                                JITDB.insertTriggerByBehaviorId(new Trigger(
+                                        newItemTextField.getText().toString(), args.getInt("ParentId")));
+                            }
+                            catch (InvalidParameterException ex){
+                                Toast.makeText(getActivity(), "Please enter some text.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
                             NewItemDialogFragment.this.dismiss();
                         }
                         break;
                     case R.string.NEW_ITEM_TYPE_CONSEQUENCE_INDEX:
                         if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
                             JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
-                            String newConsequence = newItemTextField.getText().toString();
-                            int behaviorId = args.getInt("ParentId");
-                            JITDB.insertConsequenceByBehaviorId(newConsequence, behaviorId);
+                            try {
+                                JITDB.insertConsequenceByBehaviorId(new Consequence(
+                                        newItemTextField.getText().toString(), args.getInt("ParentId")));
+                            }
+                            catch(InvalidParameterException ex){
+                                Toast.makeText(getActivity(), "Please enter some text.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            NewItemDialogFragment.this.dismiss();
+                        }
+                        break;
+                    case R.string.NEW_ITEM_TYPE_SHUTDOWN_INDEX:
+                        if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
+                            JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
+                            String newShutdown = newItemTextField.getText().toString();
+                            int triggerId = args.getInt("ParentId");
+                            JITDB.insertShutdownByTriggerId(newShutdown, triggerId);
+                            NewItemDialogFragment.this.dismiss();
+                        }
+                        break;
+                    case R.string.NEW_ITEM_TYPE_RATIONALIZATION_INDEX:
+                        if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
+                            JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
+                            try {
+                                JITDB.insertRationalizationByBehaviorId(new Rationalization(newItemTextField.getText().toString(), args.getInt("ParentId")));
+                            }
+                            catch (InvalidParameterException ex){
+                                Toast.makeText(getActivity(), "Please enter some text.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
                             NewItemDialogFragment.this.dismiss();
                         }
                         break;

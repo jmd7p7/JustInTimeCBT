@@ -16,7 +16,7 @@ import routing.TwoSectionActivityRouter;
 
 public class TwoSectionActivity extends AppCompatActivity implements BehaviorListFragment.onBehaviorSelectedListener,
         TriggerListFragment.onTriggerSelectedListener, ConsequenceListFragment.onConsequenceSelectedListener,
-        ShutdownListFragment.onShutdownSelectedListener{
+        ShutdownListFragment.onShutdownSelectedListener, RationalizationListFragment.onRationalizationSelectedListener{
     private FragmentManager fm;
     private AddNewFragment addNewFragment;
     private Bundle extras;
@@ -78,8 +78,11 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
 
     @Override
     public void onTriggerSelected(Trigger selectedTrigger) {
-        extras.putInt("TwoSectionActivityIndex",R.string.TWO_SECTION_SHUTDOWN_INDEX);
-        TwoSectionActivityRouter router = new TwoSectionActivityRouter(extras, this);
+        Bundle args = new Bundle();
+        args.putInt("TwoSectionActivityIndex",R.string.TWO_SECTION_SHUTDOWN_INDEX);
+        args.putString("TriggerName", selectedTrigger.getName());
+        args.putInt("ParentId", selectedTrigger.getId());
+        TwoSectionActivityRouter router = new TwoSectionActivityRouter(args, this);
         router.handleRoute();
     }
 
@@ -119,5 +122,15 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
     @Override
     public void onShutdownSelected(ShutDown selectedShutdown) {
         Toast.makeText(this, "You clicked on a ShutDown!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRationalizationSelected(Rationalization selectedRationalization) {
+
+    }
+
+    @Override
+    public void onRationalizationEdit(Rationalization selectedRationalization) {
+
     }
 }

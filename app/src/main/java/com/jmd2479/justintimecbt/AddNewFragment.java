@@ -82,6 +82,28 @@ public class AddNewFragment extends Fragment implements View.OnClickListener{
                 fragmentManager = getFragmentManager();
                 newItemDialogFragment.show(fragmentManager, "AddNewConsequenceDialogFragment");
                 break;
+            case R.string.NEW_ITEM_TYPE_SHUTDOWN_INDEX:
+                newItemDialogFragment = new NewItemDialogFragment();
+                newArgs.putString("NewItemTitle", "Shutdown");
+                newArgs.putString("DatabaseTableName", "Shutdown");
+                newArgs.putString("DatabaseParentTableName", "Trigger");
+                newArgs.putInt("ParentId", args.getInt("ParentId"));
+                newArgs.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_SHUTDOWN_INDEX);
+                newItemDialogFragment.setArguments(newArgs);
+                fragmentManager = getFragmentManager();
+                newItemDialogFragment.show(fragmentManager, "AddNewShutdownDialogFragment");
+                break;
+            case R.string.NEW_ITEM_TYPE_RATIONALIZATION_INDEX:
+                newItemDialogFragment = new NewItemDialogFragment();
+                newArgs.putString("NewItemTitle", "Rationalization");
+                newArgs.putString("DatabaseTableName", "Rationalization");
+                newArgs.putString("DatabaseParentTableName", "Behavior");
+                newArgs.putInt("ParentId", args.getInt("ParentId"));
+                newArgs.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_RATIONALIZATION_INDEX);
+                newItemDialogFragment.setArguments(newArgs);
+                fragmentManager = getFragmentManager();
+                newItemDialogFragment.show(fragmentManager, "AddNewRationalizationDialogFragment");
+                break;
         }
     }
 }
