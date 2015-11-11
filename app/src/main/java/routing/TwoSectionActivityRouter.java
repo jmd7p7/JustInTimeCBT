@@ -1,6 +1,5 @@
 package routing;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +12,9 @@ import com.jmd2479.justintimecbt.R;
 import com.jmd2479.justintimecbt.RationalizationListFragment;
 import com.jmd2479.justintimecbt.ShutdownListFragment;
 import com.jmd2479.justintimecbt.TriggerListFragment;
+
+import SetupManagement.TwoSectionChildEntitySetupManager_Consequence;
+import SetupManagement.TwoSectionChildEntitySetupManager_Trigger;
 
 /**
  * Created by Jonathan on 10/25/2015.
@@ -47,14 +49,20 @@ public class TwoSectionActivityRouter {
                 //Calling Activity: HomeActivity
                 //Destination Fragment: TriggerListFragment
                 //Destination Activity: TwoSectionActivity
-                displayTrigger(fm, transaction, addNewFragment);
+                TwoSectionChildEntitySetupManager_Trigger triggersSetupManager =
+                        new TwoSectionChildEntitySetupManager_Trigger(context, "Trigger", "Behavior",
+                                extras.getInt("ParentId"), "Trigger", R.string.ROUTING_INDEX_TRIGGER, fm);
+                //displayTrigger(fm, transaction, addNewFragment);
                 break;
             case R.string.TWO_SECTION_CONSEQUENCE_INDEX:
                 //Calling Fragment: SelectedBehaviorFragment
                 //Calling Activity: HomeActivity
                 //Destination Fragment: ConsequenceListFragment
                 //Destination Activity: TwoSectionActivity
-                displayConsequence(fm, transaction, addNewFragment);
+                TwoSectionChildEntitySetupManager_Consequence consequencesSetupManger =
+                        new TwoSectionChildEntitySetupManager_Consequence(context, "Consequence", "Behavior",
+                                extras.getInt("ParentId"), "Consequence", R.string.ROUTING_INDEX_TRIGGER, fm);
+                //displayConsequence(fm, transaction, addNewFragment);
                 break;
             case R.string.TWO_SECTION_SHUTDOWN_INDEX:
                 //Calling Fragment: TriggerListFragment
@@ -86,7 +94,7 @@ public class TwoSectionActivityRouter {
         RationalizationListFragment rationalizationListFragment = new RationalizationListFragment();
         rationalizationListFragment.setArguments(args);
         transaction.add(R.id.two_section_main_container, rationalizationListFragment);
-        transaction.addToBackStack("rationalizations");
+        //transaction.addToBackStack("rationalizations");
         transaction.commit();
     }
 
@@ -120,7 +128,7 @@ public class TwoSectionActivityRouter {
         TriggerListFragment triggerListFragment = new TriggerListFragment();
         triggerListFragment.setArguments(args);
         transaction.add(R.id.two_section_main_container, triggerListFragment);
-        transaction.addToBackStack("triggers");
+        //transaction.addToBackStack("triggers");
         transaction.commit();
     }
 
@@ -132,10 +140,10 @@ public class TwoSectionActivityRouter {
         args.putString("DatabaseTableName", "Behavior");
         args.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_BEHAVIOR_INDEX);
         addNewFragment.setArguments(args);
-        transaction.replace(R.id.two_section_top_container, addNewFragment);
+        transaction.add(R.id.two_section_top_container, addNewFragment);
         BehaviorListFragment behaviorListFragment = new BehaviorListFragment();
-        transaction.replace(R.id.two_section_main_container, behaviorListFragment);
-        transaction.addToBackStack("Behaviors");
+        transaction.add(R.id.two_section_main_container, behaviorListFragment);
+        //transaction.addToBackStack("Behaviors");
         transaction.commit();
     }
 

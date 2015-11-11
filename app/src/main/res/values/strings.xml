@@ -55,4 +55,8 @@
 
     <string name="BEHAVIOR_INDEX">0</string>
     <string name="TRIGGER_INDEX">1</string>
+
+    <string name="ROUTING_INDEX_BEHAVIOR">0</string>
+    <string name="ROUTING_INDEX_TRIGGER">1</string>
+    <string name="ROUTING_INDEX_CONSEQUENCE">2</string>
 </resources>

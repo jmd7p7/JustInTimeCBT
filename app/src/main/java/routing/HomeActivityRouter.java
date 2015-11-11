@@ -61,8 +61,8 @@ public class HomeActivityRouter {
         selectedBehaviorFragment.setArguments(args);
         FragmentManager fm = context.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_fragment_container, selectedBehaviorFragment);
-        transaction.addToBackStack(null);
+        transaction.add(R.id.main_fragment_container, selectedBehaviorFragment);
+        //transaction.addToBackStack(null);
         transaction.commit();
     }
 }
