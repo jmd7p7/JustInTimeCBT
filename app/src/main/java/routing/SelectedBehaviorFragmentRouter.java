@@ -42,7 +42,22 @@ public class SelectedBehaviorFragmentRouter {
                 //Destination Activity: Two Section Activity
                 displayRationalizations();
                 break;
+            case R.id.selected_behavior_alternatives_textView:
+                //Calling Fragment: SelectedBehaviorFragment
+                //Calling Activity: HomeActivity
+                //Destination Fragment: AlternativeListFragment
+                //Destination Activity: Two Section Activity
+                displayAlternatives();
+                break;
         }
+    }
+
+    private void displayAlternatives() {
+        Intent intent = new Intent(context, TwoSectionActivity.class);
+        intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_ALTERNATIVE_INDEX);
+        intent.putExtra("ParentId", args.getInt("ParentId"));
+        intent.putExtra("BehaviorName", args.getString("BehaviorName"));
+        context.startActivity(intent);
     }
 
     private void displayRationalizations() {

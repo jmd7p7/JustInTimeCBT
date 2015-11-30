@@ -10,10 +10,11 @@ import com.jmd2479.justintimecbt.R;
  */
 public class TwoSectionChildEntitySetupManager_Consequence extends TwoSectionChildEntitySetupManager {
     public TwoSectionChildEntitySetupManager_Consequence(AppCompatActivity context, String childName,
-                                                     String parentName, int parentId, String databaseTableName, int routingIndex,
-                                                     android.support.v4.app.FragmentManager fragmentManager) {
+                                                         String parentName, int parentId, String databaseTableName,
+                                                          int newItemSelectedIndex,
+                                                         android.support.v4.app.FragmentManager fragmentManager){
 
-        super(context, childName, parentName, parentId, databaseTableName, routingIndex, fragmentManager);
+        super(context, childName, parentName, parentId, databaseTableName, newItemSelectedIndex,fragmentManager);
         CreateTransaction();
     }
 

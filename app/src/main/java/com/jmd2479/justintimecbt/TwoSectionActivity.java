@@ -16,7 +16,8 @@ import routing.TwoSectionActivityRouter;
 
 public class TwoSectionActivity extends AppCompatActivity implements BehaviorListFragment.onBehaviorSelectedListener,
         TriggerListFragment.onTriggerSelectedListener, ConsequenceListFragment.onConsequenceSelectedListener,
-        ShutdownListFragment.onShutdownSelectedListener, RationalizationListFragment.onRationalizationSelectedListener{
+        ShutdownListFragment.onShutdownSelectedListener, RationalizationListFragment.onRationalizationSelectedListener,
+        AlternativeListFragment.onAlternativeSelectedListener, LogicalResponseListFragment.onLogicalResponseSelectedListener{
     private FragmentManager fm;
     private AddNewFragment addNewFragment;
     private Bundle extras;
@@ -126,11 +127,45 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
 
     @Override
     public void onRationalizationSelected(Rationalization selectedRationalization) {
-
+        Bundle args = new Bundle();
+        args.putInt("TwoSectionActivityIndex", R.string.TWO_SECTION_LOGICALRESPONSE_INDEX);
+        //args.putString("TriggerName", selectedTrigger.getName());
+        args.putInt("ParentId", selectedRationalization.getId());
+        TwoSectionActivityRouter router = new TwoSectionActivityRouter(args, this);
+        router.handleRoute();
     }
 
     @Override
     public void onRationalizationEdit(Rationalization selectedRationalization) {
+
+    }
+
+    @Override
+    public void onAlternativeSelected(Alternative selectedAlternative) {
+
+    }
+
+    @Override
+    public void onAlternativeEdit(Alternative selectedAlternative) {
+        Bundle newArgs = new Bundle();
+        ChangeItemDialogFragment changeItemDialogFragment = new ChangeItemDialogFragment();
+        newArgs.putString("EditItemType", "Alternative");
+        newArgs.putString("EditItemText", selectedAlternative.getName());
+        newArgs.putInt("EditItemId", selectedAlternative.getId());
+        newArgs.putString("DBTable", "Alternative");
+        newArgs.putInt("EditItemTypeIndex", R.string.EDIT_ITEM_TYPE_ALTERNATIVE_INDEX);
+        changeItemDialogFragment.setArguments(newArgs);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        changeItemDialogFragment.show(fragmentManager, "EditAlternativeDialogFragment");
+    }
+
+    @Override
+    public void onLogicalResponseSelected(LocicalResponse selectedLogicalResponse) {
+
+    }
+
+    @Override
+    public void onLogicalResponseEdit(LocicalResponse selectedLogicalResponse) {
 
     }
 }

@@ -104,6 +104,28 @@ public class AddNewFragment extends Fragment implements View.OnClickListener{
                 fragmentManager = getFragmentManager();
                 newItemDialogFragment.show(fragmentManager, "AddNewRationalizationDialogFragment");
                 break;
+            case R.string.NEW_ITEM_TYPE_ALTERNATIVE_INDEX:
+                newItemDialogFragment = new NewItemDialogFragment();
+                newArgs.putString("NewItemTitle", "Alternative");
+                newArgs.putString("DatabaseTableName", "Alternative");
+                newArgs.putString("DatabaseParentTableName", "Behavior");
+                newArgs.putInt("ParentId", args.getInt("ParentId"));
+                newArgs.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_ALTERNATIVE_INDEX);
+                newItemDialogFragment.setArguments(newArgs);
+                fragmentManager = getFragmentManager();
+                newItemDialogFragment.show(fragmentManager, "AddNewAlternativeDialogFragment");
+                break;
+            case R.string.NEW_ITEM_TYPE_LOGICALRESPONSE_INDEX:
+                newItemDialogFragment = new NewItemDialogFragment();
+                newArgs.putString("NewItemTitle", "Logical Response");
+                newArgs.putString("DatabaseTableName", "LogicalResponse");
+                newArgs.putString("DatabaseParentTableName", "Rationalization");
+                newArgs.putInt("ParentId", args.getInt("ParentId"));
+                newArgs.putInt("NewItemSelectedIndex", R.string.NEW_ITEM_TYPE_LOGICALRESPONSE_INDEX);
+                newItemDialogFragment.setArguments(newArgs);
+                fragmentManager = getFragmentManager();
+                newItemDialogFragment.show(fragmentManager, "AddNewLogicalResponseDialogFragment");
+                break;
         }
     }
 }

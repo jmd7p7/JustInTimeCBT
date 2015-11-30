@@ -26,6 +26,7 @@ public class SelectedBehaviorFragment extends Fragment implements View.OnClickLi
     private TextView triggerTextView;
     private TextView consequenceTextView;
     private TextView rationalizationTextView;
+    private TextView alternativeTextView;
     private Bundle args;
     @Nullable
     @Override
@@ -44,6 +45,9 @@ public class SelectedBehaviorFragment extends Fragment implements View.OnClickLi
 
         rationalizationTextView = (TextView) theView.findViewById(R.id.selected_behavior_rationalizations_textView);
         rationalizationTextView.setOnClickListener(this);
+
+        alternativeTextView = (TextView) theView.findViewById(R.id.selected_behavior_alternatives_textView);
+        alternativeTextView.setOnClickListener(this);
 
         return theView;
     }

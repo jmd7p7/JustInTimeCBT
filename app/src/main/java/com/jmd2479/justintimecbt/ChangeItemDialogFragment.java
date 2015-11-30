@@ -69,8 +69,15 @@ public class ChangeItemDialogFragment extends DialogFragment implements View.OnC
                         JITDB.deleteConsequence(args.getInt("EditItemId"));
                         ChangeItemDialogFragment.this.dismiss();
                         break;
+                    case R.string.EDIT_ITEM_TYPE_ALTERNATIVE_INDEX:
+                        JITDB.deleteAlternative(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
                 }
-            break;
+                break;
+            case R.id.cancelItemChangesBtn:
+                ChangeItemDialogFragment.this.dismiss();
+                break;
         }
     }
 }

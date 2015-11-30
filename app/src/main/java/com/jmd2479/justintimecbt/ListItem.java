@@ -30,7 +30,7 @@ public abstract class ListItem {
         //InvalidParameterException is thrown if the name argument is null or the empty string
         //Without the name field the list item is useless
         if(name == null || name.isEmpty()){
-            throw new InvalidParameterException("Rationalization must have some text.");
+            throw new InvalidParameterException("Item must have some text.");
         }
         this.name = name;
         this.id = -1;

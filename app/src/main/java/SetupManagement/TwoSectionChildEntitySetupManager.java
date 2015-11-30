@@ -12,7 +12,7 @@ public abstract class TwoSectionChildEntitySetupManager {
     private String childName;
     private int parentId;
     private String databaseTableName;
-    private int routingIndex;
+    private int newItemSelectedIndex;
     private Bundle addNewFragmentArgs;
     protected Bundle destinationFragmentArgs;
     protected AddNewFragment addNewFragment;
@@ -20,12 +20,12 @@ public abstract class TwoSectionChildEntitySetupManager {
     protected android.support.v4.app.FragmentManager fragmentManager;
 
     public TwoSectionChildEntitySetupManager(AppCompatActivity context, String childName, String parentName, int parentId,
-        String databaseTableName, int routingIndex, android.support.v4.app.FragmentManager fragmentManager){
-        context.setTitle(parentName + " " + childName + "s");
+        String databaseTableName, int newItemSelectedIndex, android.support.v4.app.FragmentManager fragmentManager){
+        context.setTitle(childName + "s");
         this.childName = childName;
         this.parentId = parentId;
         this.databaseTableName = databaseTableName;
-        this.routingIndex = routingIndex;
+        this.newItemSelectedIndex = newItemSelectedIndex;
         this.addNewFragmentArgs = new Bundle();
         this.destinationFragmentArgs = new Bundle();
         this.addNewFragment = new AddNewFragment();
@@ -38,7 +38,7 @@ public abstract class TwoSectionChildEntitySetupManager {
         addNewFragmentArgs.putString("NewItemTitle", this.childName);
         addNewFragmentArgs.putString("DatabaseTableName", this.databaseTableName);
         addNewFragmentArgs.putInt("ParentId", parentId);
-        addNewFragmentArgs.putInt("RoutingIndex", routingIndex);
+        addNewFragmentArgs.putInt("NewItemSelectedIndex", newItemSelectedIndex);
         addNewFragment.setArguments(addNewFragmentArgs);
     }
 

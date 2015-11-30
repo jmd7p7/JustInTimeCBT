@@ -11,10 +11,11 @@ import com.jmd2479.justintimecbt.TriggerListFragment;
 public class TwoSectionChildEntitySetupManager_Trigger extends TwoSectionChildEntitySetupManager {
 
     public TwoSectionChildEntitySetupManager_Trigger(AppCompatActivity context, String childName,
-                String parentName, int parentId, String databaseTableName, int routingIndex,
-                android.support.v4.app.FragmentManager fragmentManager){
+                                                     String parentName, int parentId, String databaseTableName,
+                                                     int newItemSelectedIndex,
+                                                     android.support.v4.app.FragmentManager fragmentManager){
 
-        super(context, childName, parentName, parentId, databaseTableName, routingIndex, fragmentManager);
+        super(context, childName, parentName, parentId, databaseTableName, newItemSelectedIndex, fragmentManager);
         CreateTransaction();
     }
 

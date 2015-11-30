@@ -112,6 +112,34 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
                             NewItemDialogFragment.this.dismiss();
                         }
                         break;
+                    case R.string.NEW_ITEM_TYPE_ALTERNATIVE_INDEX:
+                        if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
+                            JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
+                            try {
+                                JITDB.insertAlternativeByBehaviorId(new Alternative(
+                                        newItemTextField.getText().toString(), args.getInt("ParentId")));
+                            }
+                            catch(InvalidParameterException ex){
+                                Toast.makeText(getActivity(), "Please enter some text.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            NewItemDialogFragment.this.dismiss();
+                        }
+                        break;
+                    case R.string.NEW_ITEM_TYPE_LOGICALRESPONSE_INDEX:
+                        if(newItemTextField.getText().toString() != "" && newItemTextField.getText().toString() != null) {
+                            JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
+                            try {
+                                JITDB.insertLogicalResponseByRationalizationId(new LocicalResponse(
+                                        newItemTextField.getText().toString(), args.getInt("ParentId")));
+                            }
+                            catch(InvalidParameterException ex){
+                                Toast.makeText(getActivity(), "Please enter some text.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            NewItemDialogFragment.this.dismiss();
+                        }
+                        break;
                 }
             case R.id.cancelNewItemBtn:
                 NewItemDialogFragment.this.dismiss();

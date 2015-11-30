@@ -188,6 +188,81 @@ public class JITDatabaseAdapter  {
         return result;
     }
 
+    //Logial Repsonse-related SQL statements
+    public void deleteAllLogicalResponses(){
+        String query = "DELETE FROM " + helper.LOGICAL_RESPONSE_TABLE + ";";
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.execSQL(query);
+    }
+
+    public long insertLogicalResponseByRationalizationId(LocicalResponse locicalResponse){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(helper.LR_RATIONALIZATION_ID, locicalResponse.getParentId());
+        contentValues.put(helper.LOGICAL_RESPONSE_MESSAGE, locicalResponse.getName());
+        return db.insert(helper.LOGICAL_RESPONSE_TABLE, helper.AL_THERAPIST_ID, contentValues);
+    }
+
+    public ArrayList<ListItem> getLogicalResponsesByRationalizationId(int rationalizationId) {
+        ArrayList<ListItem> result = new ArrayList<ListItem>();
+        int currentId;
+        String currentName;
+        String query = "SELECT " + helper.LOGICAL_RESPONSE_MESSAGE + ", " + helper.LOGICAL_RESPONSE_ID +
+                " FROM " + helper.LOGICAL_RESPONSE_TABLE + " WHERE " + helper.LR_RATIONALIZATION_ID + " = " +
+                rationalizationId + ";";
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        while(cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.LOGICAL_RESPONSE_ID);
+            int indexForName = cursor.getColumnIndex(helper.LOGICAL_RESPONSE_MESSAGE);
+            currentId = cursor.getInt(indexForId);
+            currentName = cursor.getString(indexForName);
+            result.add(new LocicalResponse(currentId, currentName));
+        }
+        return result;
+    }
+
+    //Alternative-related SQL statements
+    public long insertAlternativeByBehaviorId(Alternative alternative){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(helper.AL_BEHAVIOR_ID, alternative.getParentId());
+        contentValues.put(helper.ALTERNATIVE_MESSAGE, alternative.getName());
+        return db.insert(helper.ALTERNATIVE_TABLE, helper.AL_THERAPIST_ID, contentValues);
+    }
+    public ArrayList<ListItem> getAlternativesByBehaviorId(int behaviorId) {
+        ArrayList<ListItem> result = new ArrayList<ListItem>();
+        int currentId;
+        String currentName;
+        String query = "SELECT " + helper.ALTERNATIVE_MESSAGE + ", " + helper.ALTERNATIVE_ID +
+                " FROM " + helper.ALTERNATIVE_TABLE + " WHERE " + helper.AL_BEHAVIOR_ID + " = " +
+                behaviorId + ";";
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        while(cursor.moveToNext()){
+            int indexForId = cursor.getColumnIndex(helper.ALTERNATIVE_ID);
+            int indexForName = cursor.getColumnIndex(helper.ALTERNATIVE_MESSAGE);
+            currentId = cursor.getInt(indexForId);
+            currentName = cursor.getString(indexForName);
+            result.add(new Alternative(currentId, currentName));
+        }
+        return result;
+    }
+
+    public void deleteAllAlternatives() {
+        String query = "DELETE FROM " + helper.ALTERNATIVE_TABLE + ";";
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.execSQL(query);
+    }
+
+    public int deleteAlternative(int alternativeId) {
+        int rowsDeleted;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        rowsDeleted= db.delete(helper.ALTERNATIVE_TABLE, helper.ALTERNATIVE_ID + "=" + alternativeId, null);
+        db.close();
+        return rowsDeleted;
+    }
+
     static class JITDatabaseHelper extends SQLiteOpenHelper{
         private static final String DATABASE_NAME = "JustInTimeCBT";
         private static final int DATABASE_VERSION = 4;

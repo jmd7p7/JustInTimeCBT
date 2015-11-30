@@ -13,7 +13,9 @@ import com.jmd2479.justintimecbt.RationalizationListFragment;
 import com.jmd2479.justintimecbt.ShutdownListFragment;
 import com.jmd2479.justintimecbt.TriggerListFragment;
 
+import SetupManagement.TwoSectionChildEntitySetupManager_Alternative;
 import SetupManagement.TwoSectionChildEntitySetupManager_Consequence;
+import SetupManagement.TwoSectionChildEntitySetupManager_LogicalResponse;
 import SetupManagement.TwoSectionChildEntitySetupManager_Trigger;
 
 /**
@@ -51,7 +53,7 @@ public class TwoSectionActivityRouter {
                 //Destination Activity: TwoSectionActivity
                 TwoSectionChildEntitySetupManager_Trigger triggersSetupManager =
                         new TwoSectionChildEntitySetupManager_Trigger(context, "Trigger", "Behavior",
-                                extras.getInt("ParentId"), "Trigger", R.string.ROUTING_INDEX_TRIGGER, fm);
+                                extras.getInt("ParentId"), "Trigger", R.string.NEW_ITEM_TYPE_TRIGGER_INDEX,fm);
                 //displayTrigger(fm, transaction, addNewFragment);
                 break;
             case R.string.TWO_SECTION_CONSEQUENCE_INDEX:
@@ -61,7 +63,7 @@ public class TwoSectionActivityRouter {
                 //Destination Activity: TwoSectionActivity
                 TwoSectionChildEntitySetupManager_Consequence consequencesSetupManger =
                         new TwoSectionChildEntitySetupManager_Consequence(context, "Consequence", "Behavior",
-                                extras.getInt("ParentId"), "Consequence", R.string.ROUTING_INDEX_TRIGGER, fm);
+                                extras.getInt("ParentId"), "Consequence", R.string.NEW_ITEM_TYPE_CONSEQUENCE_INDEX,fm);
                 //displayConsequence(fm, transaction, addNewFragment);
                 break;
             case R.string.TWO_SECTION_SHUTDOWN_INDEX:
@@ -77,6 +79,24 @@ public class TwoSectionActivityRouter {
                 //Destination Fragment: RationalizationListFragment
                 //Destination Activity: TwoSectionActivity
                 displayRationalizations(fm, transaction, addNewFragment);
+                break;
+            case R.string.TWO_SECTION_ALTERNATIVE_INDEX:
+                //Calling Fragment: SelectedBehaviorFragment
+                //Calling Activity: HomeActivity
+                //Destination Fragment: AlternativeListFragment
+                //Destination Activity: TwoSectionActivity
+                TwoSectionChildEntitySetupManager_Alternative alternativesSetupManager =
+                        new TwoSectionChildEntitySetupManager_Alternative(context, "Alternative", "Behavior",
+                                extras.getInt("ParentId"), "Alternative", R.string.NEW_ITEM_TYPE_ALTERNATIVE_INDEX,fm);
+                break;
+            case R.string.TWO_SECTION_LOGICALRESPONSE_INDEX:
+                //Calling Fragment: RationalizationListFragment
+                //Calling Activity: HomeActivity
+                //Destination Fragment: LogicalResponseListFragment
+                //Destination Activity: TwoSectionActivity
+                TwoSectionChildEntitySetupManager_LogicalResponse logicalResponsesSetupManager =
+                        new TwoSectionChildEntitySetupManager_LogicalResponse(context, "Logical Response", "Rationalization",
+                                extras.getInt("ParentId"), "LogicalResponse", R.string.NEW_ITEM_TYPE_LOGICALRESPONSE_INDEX,fm);
                 break;
         }
     }
