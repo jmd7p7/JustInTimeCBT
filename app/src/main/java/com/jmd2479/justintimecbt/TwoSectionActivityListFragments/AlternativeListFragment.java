@@ -60,7 +60,7 @@ public class AlternativeListFragment extends ListFragment {
             mCallback = (onAlternativeSelectedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement onAlternativeSelectedListener");
+                    + " must implement onAlternativeSelectedListener.");
         }
     }
 }
