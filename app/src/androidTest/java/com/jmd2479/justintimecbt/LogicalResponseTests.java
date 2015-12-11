@@ -1,5 +1,9 @@
 package com.jmd2479.justintimecbt;
 
+import com.jmd2479.justintimecbt.Data.JITDatabaseAdapter;
+import com.jmd2479.justintimecbt.DataTransferObjects.ListItem;
+import com.jmd2479.justintimecbt.DataTransferObjects.LocicalResponse;
+
 import java.util.ArrayList;
 
 /**

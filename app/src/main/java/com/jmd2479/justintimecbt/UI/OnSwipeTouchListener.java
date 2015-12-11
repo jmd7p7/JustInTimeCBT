@@ -1,17 +1,9 @@
 package com.jmd2479.justintimecbt.UI;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.jmd2479.justintimecbt.ListItem;
-
-import java.util.ResourceBundle;
 
 /**
  * Created by Jonathan on 11/1/2015.

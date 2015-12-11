@@ -6,15 +6,15 @@
     android:background="#C2AD99">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/two_section_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"/>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/two_section_top_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/two_section_main_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"/>
 
 </LinearLayout>

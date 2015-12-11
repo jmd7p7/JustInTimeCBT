@@ -1,8 +1,6 @@
 package com.jmd2479.justintimecbt;
 
-import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jmd2479.justintimecbt.DataTransferObjects.ListItem;
 import com.jmd2479.justintimecbt.UI.OnSwipeTouchListener;
 
 import java.util.ArrayList;
@@ -17,12 +16,12 @@ import java.util.ArrayList;
 /**
  * Created by Jonathan on 10/7/2015.
  */
-class MyAppSectionArrayAdater extends ArrayAdapter {
+public class MyAppSectionArrayAdapter extends ArrayAdapter {
     private final Context context;
     private final ArrayList<ListItem> values;
     ImCallBack imCallBack;
 
-    public MyAppSectionArrayAdater(Context context, ArrayList<ListItem> values, ImCallBack imCallBack) {
+    public MyAppSectionArrayAdapter(Context context, ArrayList<ListItem> values, ImCallBack imCallBack) {
         super(context, R.layout.app_section_list_element, values);
         this.context = context;
         this.values = values;

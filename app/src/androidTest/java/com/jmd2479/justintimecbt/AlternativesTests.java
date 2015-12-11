@@ -1,6 +1,8 @@
 package com.jmd2479.justintimecbt;
 
-import android.database.sqlite.SQLiteDatabase;
+import com.jmd2479.justintimecbt.Data.JITDatabaseAdapter;
+import com.jmd2479.justintimecbt.DataTransferObjects.Alternative;
+import com.jmd2479.justintimecbt.DataTransferObjects.ListItem;
 
 import java.util.ArrayList;
 

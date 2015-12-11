@@ -13,7 +13,8 @@
     <string name="behaviorsBtnText">Behaviors</string>
     <string name="mainBackgroundColor">#222</string>
     <string name="title_activity_behavior">Behaviors</string>
-
+    <string name="PARENTID_DOES_NOT_EXIT">-1</string>
+    <string name="PARENT_NAME_DOES_NOT_EXIT">N/A</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_single_behavior">SingleBehaviorActivity</string>
@@ -57,7 +58,10 @@
     <string name="EDIT_ITEM_TYPE_BEHAVIOR_INDEX">0</string>
     <string name="EDIT_ITEM_TYPE_TRIGGER_INDEX">1</string>
     <string name="EDIT_ITEM_TYPE_CONSEQUENCE_INDEX">2</string>
+    <string name="EDIT_ITEM_TYPE_SHUTDOWN_INDEX">3</string>
+    <string name="EDIT_ITEM_TYPE_RATIONALIZATION_INDEX">4</string>
     <string name="EDIT_ITEM_TYPE_ALTERNATIVE_INDEX">5</string>
+    <string name="EDIT_ITEM_TYPE_LOGICALRESPONSE_INDEX">6</string>
 
     <string name="BEHAVIOR_INDEX">0</string>
     <string name="TRIGGER_INDEX">1</string>

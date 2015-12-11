@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.jmd2479.justintimecbt.R;
-import com.jmd2479.justintimecbt.TwoSectionActivity;
+import com.jmd2479.justintimecbt.Activities.TwoSectionActivity;
 
 /**
  * Created by Jonathan on 10/25/2015.
