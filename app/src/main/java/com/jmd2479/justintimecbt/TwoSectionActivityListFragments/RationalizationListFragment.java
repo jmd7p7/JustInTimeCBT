@@ -45,6 +45,12 @@ public class RationalizationListFragment extends ListFragment{
         }));
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        getActivity().setTitle("Rationalizations");
+    }
+
     public interface onRationalizationSelectedListener{
         public void onRationalizationSelected(Rationalization selectedRationalization);
         public void onRationalizationEdit(Rationalization selectedRationalization, int parentId);

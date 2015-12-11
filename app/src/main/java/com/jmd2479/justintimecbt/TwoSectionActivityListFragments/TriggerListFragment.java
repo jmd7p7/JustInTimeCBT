@@ -46,6 +46,12 @@ public class TriggerListFragment extends ListFragment {
         }));
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        getActivity().setTitle("Triggers");
+    }
+
     public interface onTriggerSelectedListener{
         public void onTriggerSelected(Trigger selectedTrigger);
         public void onTriggerEdit(Trigger selectedTrigger, int parentId);

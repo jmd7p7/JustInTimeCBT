@@ -25,9 +25,7 @@ public class TwoSectionSetupManager_LogicalResponse extends TwoSectionSetupManag
         LogicalResponseListFragment logicalResponseListFragment = new LogicalResponseListFragment();
         logicalResponseListFragment.setArguments(destinationFragmentArgs);
         transaction.replace(R.id.two_section_main_container, logicalResponseListFragment);
-        if(!callingActivityName.equals("TwoSectionActivity")) {
-            transaction.addToBackStack("logical responses for " + this.parentName);
-        }
+        transaction.addToBackStack("logical responses for " + this.parentName);
         transaction.commit();
     }
 }
