@@ -78,10 +78,10 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
     //it will pass in an index corresponding to the section of the
     //app the user wishes to navigate to
     public void onAppSectionSelected(int index) {
-        FragmentManager fm = getSupportFragmentManager();
+/*        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         AddNewFragment addNewFragment = new AddNewFragment();
-        Bundle addNewFragmentArgs = new Bundle();
+        Bundle addNewFragmentArgs = new Bundle();*/
         switch (index){
             case R.string.BEHAVIOR_SECTION_INDEX:
                 Intent intent = new Intent(this, TwoSectionActivity.class);
@@ -102,9 +102,6 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.onAp
     public void addAddNewFragmentToActivity() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-
-/*        topLayout.setVisibility(View.VISIBLE);
-        transaction.add(R.id.main_fragment_container_top, new AddNewFragment());*/
         transaction.commit();
     }
 }

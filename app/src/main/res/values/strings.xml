@@ -70,4 +70,14 @@
     <string name="ROUTING_INDEX_TRIGGER">1</string>
     <string name="ROUTING_INDEX_CONSEQUENCE">2</string>
     <string name="ROUTING_INDEX_ALTERNATIVE">5</string>
+
+    <string name="PAGE_HEADER_EXPLANATION_BEHAVIOR">Harmful Behaviors</string>
+    <string name="PAGE_HEADER_DESCRIPTION_BEHAVIOR">I\'m not happy with these behaviors.</string>
+
+    <string name="PAGE_HEADER_EXPLANATION_TRIGGER">Watch out for these triggers!</string>
+    <string name="PAGE_HEADER_EXPLANATION_SHUTDOWN">Shut down that trigger NOW!</string>
+    <string name="PAGE_HEADER_EXPLANATION_RATIONALIZATION">I\'ll tell myself anything!</string>
+    <string name="PAGE_HEADER_EXPLANATION_LOGICALRESPONSE">It\'s a LIE!  And here\'s why:</string>
+    <string name="PAGE_HEADER_EXPLANATION_ALTERNATIVE">I\'ll do something different instead!</string>
+    <string name="PAGE_HEADER_EXPLANATION_CONSEQUENCE">Look at what will happen!</string>
 </resources>

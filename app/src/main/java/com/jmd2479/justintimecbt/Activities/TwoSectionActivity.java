@@ -35,6 +35,7 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         ShutdownListFragment.onShutdownSelectedListener, RationalizationListFragment.onRationalizationSelectedListener,
         AlternativeListFragment.onAlternativeSelectedListener, LogicalResponseListFragment.onLogicalResponseSelectedListener,
         MyDialogCloseListener{
+
     private FragmentManager fm;
     private AddNewFragment addNewFragment;
     private Bundle extras;
@@ -96,6 +97,7 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         args.putString("TriggerName", selectedTrigger.getName());
         args.putInt("ParentId", selectedTrigger.getId());
         args.putString("CallingActivityName", "TwoSectionActivity");
+        args.putString("DescriptionText", selectedTrigger.getName());
         TwoSectionActivityRouter router = new TwoSectionActivityRouter(args, this);
         router.handleRoute();
     }
@@ -132,6 +134,7 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         args.putInt("TwoSectionActivityIndex", R.string.TWO_SECTION_LOGICALRESPONSE_INDEX);
         args.putInt("ParentId", selectedRationalization.getId());
         args.putString("CallingActivityName", "TwoSectionActivity");
+        args.putString("DescriptionText", selectedRationalization.getName());
         TwoSectionActivityRouter router = new TwoSectionActivityRouter(args, this);
         router.handleRoute();
     }

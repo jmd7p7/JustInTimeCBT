@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.Editable;
 import android.util.Log;
 
 import com.jmd2479.justintimecbt.DataTransferObjects.Alternative;
@@ -64,6 +65,14 @@ public class JITDatabaseAdapter  {
         return result;
     }
 
+    public void updateBehavior(int editItemId, String editedBehavior) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.BEHAVIOR_NAME, editedBehavior);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.BEHAVIOR_TABLE, cv, helper.BEHAVIOR_ID + "=" + editItemId, null);
+        db.close();
+    }
+
     //Trigger-related SQL statements
     public long insertTriggerByBehaviorId(Trigger trigger){
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -102,6 +111,14 @@ public class JITDatabaseAdapter  {
         return rowsDeleted;
     }
 
+    public void updateTrigger(int editItemId, String editedTrigger) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.TRIGGER_NAME, editedTrigger);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.TRIGGER_TABLE, cv, helper.TRIGGER_ID + "=" + editItemId, null);
+        db.close();
+    }
+
     //Consquence-related SQL statements
     public long insertConsequenceByBehaviorId(Consequence consequence){
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -138,6 +155,14 @@ public class JITDatabaseAdapter  {
         rowsDeleted= db.delete(helper.CONSEQUENCE_TABLE, helper.CONSEQUENCE_ID + "=" + consequenceId, null);
         db.close();
         return rowsDeleted;
+    }
+
+    public void updateConsequence(int editItemId, String editedConsequence) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.CONSEQUENCE_MESSAGE, editedConsequence);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.CONSEQUENCE_TABLE, cv, helper.CONSEQUENCE_ID + "=" + editItemId, null);
+        db.close();
     }
 
     //Shutdown-related SQL statements

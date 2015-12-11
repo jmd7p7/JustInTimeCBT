@@ -70,6 +70,4 @@ public class RationalizationListFragment extends ListFragment{
                     + " must implement onRationalizationSelectedListener");
         }
     }
-
-
 }

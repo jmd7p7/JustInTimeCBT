@@ -22,65 +22,26 @@ public class SelectedBehaviorFragmentRouter {
     public void handleRoute(){
         switch (viewId){
             case R.id.selected_behavior_triggers_textView:
-                //Calling Fragment: SelectedBehaviorFragment
-                //Calling Activity: HomeActivity
-                //Destination Fragment: TriggerListFragment
-                //Destination Activity: Two Section Activity
-                displayTriggers();
+                display(R.string.TWO_SECTION_TRIGGER_INDEX);
                 break;
             case R.id.selected_behavior_consequences_textView:
-                //Calling Fragment: SelectedBehaviorFragment
-                //Calling Activity: HomeActivity
-                //Destination Fragment: ConsequenceListFragment
-                //Destination Activity: Two Section Activity
-                displayConsequences();
+                display(R.string.TWO_SECTION_CONSEQUENCE_INDEX);
                 break;
             case R.id.selected_behavior_rationalizations_textView:
-                //Calling Fragment: SelectedBehaviorFragment
-                //Calling Activity: HomeActivity
-                //Destination Fragment: RationalizationsListFragment
-                //Destination Activity: Two Section Activity
-                displayRationalizations();
+                display(R.string.TWO_SECTION_RATIONALIZATION_INDEX);
                 break;
             case R.id.selected_behavior_alternatives_textView:
-                //Calling Fragment: SelectedBehaviorFragment
-                //Calling Activity: HomeActivity
-                //Destination Fragment: AlternativeListFragment
-                //Destination Activity: Two Section Activity
-                displayAlternatives();
+                display(R.string.TWO_SECTION_ALTERNATIVE_INDEX);
                 break;
         }
     }
 
-    private void displayAlternatives() {
+    private void display(int twoSectionIndex) {
         Intent intent = new Intent(context, TwoSectionActivity.class);
-        intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_ALTERNATIVE_INDEX);
+        intent.putExtra("TwoSectionActivityIndex", twoSectionIndex);
         intent.putExtra("ParentId", args.getInt("ParentId"));
         intent.putExtra("BehaviorName", args.getString("BehaviorName"));
-        context.startActivity(intent);
-    }
-
-    private void displayRationalizations() {
-        Intent intent = new Intent(context, TwoSectionActivity.class);
-        intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_RATIONALIZATION_INDEX);
-        intent.putExtra("ParentId", args.getInt("ParentId"));
-        intent.putExtra("BehaviorName", args.getString("BehaviorName"));
-        context.startActivity(intent);
-    }
-
-    private void displayConsequences() {
-        Intent intent = new Intent(context, TwoSectionActivity.class);
-        intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_CONSEQUENCE_INDEX);
-        intent.putExtra("ParentId", args.getInt("ParentId"));
-        intent.putExtra("BehaviorName", args.getString("BehaviorName"));
-        context.startActivity(intent);
-    }
-
-    private void displayTriggers() {
-        Intent intent = new Intent(context, TwoSectionActivity.class);
-        intent.putExtra("TwoSectionActivityIndex", R.string.TWO_SECTION_TRIGGER_INDEX);
-        intent.putExtra("ParentId", args.getInt("ParentId"));
-        intent.putExtra("BehaviorName", args.getString("BehaviorName"));
+        intent.putExtra("DescriptionText", args.getString("BehaviorName"));
         context.startActivity(intent);
     }
 }

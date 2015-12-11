@@ -13,19 +13,23 @@ public class TwoSectionSetupManager_Shutdown extends TwoSectionSetupManager{
     public TwoSectionSetupManager_Shutdown(String callingActivityName, AppCompatActivity context, String childName,
                                            String parentName, int parentId, String databaseTableName,
                                            int newItemSelectedIndex,
-                                           android.support.v4.app.FragmentManager fragmentManager){
+                                           android.support.v4.app.FragmentManager fragmentManager,
+                                           String explanation, String description){
 
-        super(callingActivityName, context, childName, parentName, parentId, databaseTableName, newItemSelectedIndex,fragmentManager);
+        super(callingActivityName, context, childName, parentName,
+                parentId, databaseTableName, newItemSelectedIndex,
+                fragmentManager, explanation, description);
         CreateTransaction();
     }
 
     @Override
     public void CreateTransaction(){
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.two_section_top_container, addNewFragment);
+        transaction.replace(R.id.two_section_bottom_container, addNewFragment);
         ShutdownListFragment shutdownListFragment = new ShutdownListFragment();
         shutdownListFragment.setArguments(destinationFragmentArgs);
         transaction.replace(R.id.two_section_main_container, shutdownListFragment);
+        transaction.replace(R.id.two_section_top_container, pageHeaderFragment);
         transaction.addToBackStack("Shutdowns for " + this.parentName);
         transaction.commit();
     }

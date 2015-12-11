@@ -55,11 +55,10 @@ public class ChangeItemDialogFragment extends DialogFragment implements View.OnC
         return theView;
     }
 
-    public void onDismiss(DialogInterface dialog)
-    {
+    public void onDismiss(DialogInterface dialog) {
         Activity activity = getActivity();
-        if(activity instanceof MyDialogCloseListener)
-            ((MyDialogCloseListener)activity).handleDialogClose(
+        if (activity instanceof MyDialogCloseListener)
+            ((MyDialogCloseListener) activity).handleDialogClose(
                     args.getInt("ParentId"), args.getInt("TwoSectionIndex"));
     }
 
@@ -67,9 +66,9 @@ public class ChangeItemDialogFragment extends DialogFragment implements View.OnC
     public void onClick(View v) {
         int id = v.getId();
         JITDatabaseAdapter JITDB = new JITDatabaseAdapter(getActivity());
-        switch (id){
+        switch (id) {
             case R.id.deleteItemBtn:
-                switch (args.getInt("EditItemTypeIndex")){
+                switch (args.getInt("EditItemTypeIndex")) {
                     case R.string.EDIT_ITEM_TYPE_BEHAVIOR_INDEX:
                         JITDB.deleteBehavior(args.getInt("EditItemId"));
                         ChangeItemDialogFragment.this.dismiss();
@@ -103,6 +102,37 @@ public class ChangeItemDialogFragment extends DialogFragment implements View.OnC
             case R.id.cancelItemChangesBtn:
                 ChangeItemDialogFragment.this.dismiss();
                 break;
+            case R.id.saveItemChangesBtn:
+                switch (args.getInt("EditItemTypeIndex")) {
+                    case R.string.EDIT_ITEM_TYPE_BEHAVIOR_INDEX:
+                        JITDB.updateBehavior(args.getInt("EditItemId"), editItemTextField.getText().toString());
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_TRIGGER_INDEX:
+                        JITDB.updateTrigger(args.getInt("EditItemId"), editItemTextField.getText().toString());
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_CONSEQUENCE_INDEX:
+                        JITDB.updateConsequence(args.getInt("EditItemId"), editItemTextField.getText().toString());
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_SHUTDOWN_INDEX:
+                        JITDB.deleteShutdown(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_RATIONALIZATION_INDEX:
+                        JITDB.deleteRationalization(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_ALTERNATIVE_INDEX:
+                        JITDB.deleteAlternative(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                    case R.string.EDIT_ITEM_TYPE_LOGICALRESPONSE_INDEX:
+                        JITDB.deleteLogicalResponse(args.getInt("EditItemId"));
+                        ChangeItemDialogFragment.this.dismiss();
+                        break;
+                }
         }
     }
 }
