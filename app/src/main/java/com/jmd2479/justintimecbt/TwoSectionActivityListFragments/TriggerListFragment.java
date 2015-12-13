@@ -17,7 +17,6 @@ import java.util.ArrayList;
  * Created by Jonathan on 10/11/2015.
  */
 public class TriggerListFragment extends ListFragment {
-    JITDatabaseAdapter dbAdapter;
     ArrayList<ListItem> triggers;
     Bundle receivedArgs;
 
@@ -31,7 +30,7 @@ public class TriggerListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         receivedArgs = getArguments();
-        dbAdapter = new JITDatabaseAdapter(getActivity());
+        JITDatabaseAdapter dbAdapter = new JITDatabaseAdapter(getActivity());
         triggers = dbAdapter.getTriggersByBehaviorId(receivedArgs.getInt("ParentId"));
         setListAdapter(new MyAppSectionArrayAdapter(getActivity(), triggers, new MyAppSectionArrayAdapter.ImCallBack() {
             @Override

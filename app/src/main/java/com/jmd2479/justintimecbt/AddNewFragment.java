@@ -17,14 +17,6 @@ import com.jmd2479.justintimecbt.DialogFragments.NewItemDialogFragment;
 public class AddNewFragment extends Fragment implements View.OnClickListener{
     Button addNewBtn;
     Bundle args;
-
-    //AddNewFragment is called by the TwoSectionActivity.  This is the top section of the two section activity.
-    //    The following bundle of information may/may not be retrieved from the args sent to this fragment
-    //    - 'NewItemTitle' - the name of the item (for display purposes)
-    //    - 'DatabaseTableName' - the database table name associated with the item type
-    //    - 'ParentId' - If necessary, the Id of the parent item
-    //    - 'DatabaseParentTableName' If necessary, the database table name assoicated with the parent item type
-    //    - 'NewItemSelectedIndex' - used in the switch statement of the new item fragment to determine which new item type to create
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,14 +29,8 @@ public class AddNewFragment extends Fragment implements View.OnClickListener{
         return theView;
     }
 
-
-    //OnClick will create a newItemDialogFragment
-    //The following information will be sent as args to the newItemDialogFragment
-    //    - 'NewItemTitle' - the name of the item (for display purposes)
-    //    - 'DatabaseTableName' - the database table name associated with the item type
-    //    - 'ParentId' - If necessary, the Id of the parent item
-    //    - 'DatabaseParentTableName' If necessary, the database table name assoicated with the parent item type
-    //    - 'NewItemSelectedIndex' - used in the switch statement of the new item fragment to determine which new item type to create
+    //For each case below there's a lot of duplicate code.  If I had time I'd extract that code
+    //into a method
     @Override
     public void onClick(View v) {
         int index = args.getInt("NewItemSelectedIndex");

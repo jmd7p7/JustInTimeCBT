@@ -40,12 +40,10 @@ public class MyAppSectionArrayAdapter extends ArrayAdapter {
         rowView.setOnTouchListener(new OnSwipeTouchListener(context) {
             @Override
             public void onSwipe(){
-                Toast.makeText(context, "Swiping...", Toast.LENGTH_SHORT).show();
                 imCallBack.OnListItemSwipe(position);
             }
             @Override
             public void onClick(){
-                Toast.makeText(context, "Position:" + position, Toast.LENGTH_SHORT).show();
                 imCallBack.OnListItemClick(position);
             }
         });

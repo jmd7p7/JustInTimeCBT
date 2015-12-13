@@ -18,8 +18,6 @@ import java.util.ArrayList;
  * Created by Jonathan on 11/1/2015.
  */
 public class ShutdownListFragment extends ListFragment {
-
-    JITDatabaseAdapter dbAdapter;
     ArrayList<ListItem> shutdowns;
     Bundle receivedArgs;
 
@@ -32,7 +30,7 @@ public class ShutdownListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         receivedArgs = getArguments();
-        dbAdapter = new JITDatabaseAdapter(getActivity());
+        JITDatabaseAdapter dbAdapter = new JITDatabaseAdapter(getActivity());
         shutdowns = dbAdapter.getShutdownsByTriggerId(receivedArgs.getInt("ParentId"));
         setListAdapter(new MyAppSectionArrayAdapter(getActivity(), shutdowns, new MyAppSectionArrayAdapter.ImCallBack() {
             @Override

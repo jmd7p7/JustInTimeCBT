@@ -1,6 +1,8 @@
 package com.jmd2479.justintimecbt.DialogFragments;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -54,6 +56,13 @@ public class NewItemDialogFragment extends DialogFragment implements View.OnClic
         dialog.setCanceledOnTouchOutside(false);
 
         return theView;
+    }
+
+    public void onDismiss(DialogInterface dialog) {
+        Activity activity = getActivity();
+        if (activity instanceof MyDialogCloseListener)
+            ((MyDialogCloseListener) activity).handleDialogClose(
+                    args.getInt("ParentId"), args.getInt("TwoSectionIndex"));
     }
 
     @Override

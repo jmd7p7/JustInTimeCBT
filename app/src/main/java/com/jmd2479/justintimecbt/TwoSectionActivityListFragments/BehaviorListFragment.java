@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 //BehaviorListFragment is
 public class BehaviorListFragment extends ListFragment {
-    JITDatabaseAdapter dbAdapter;
     ArrayList<ListItem> behaviors;
 
 
@@ -37,7 +36,7 @@ public class BehaviorListFragment extends ListFragment {
 
         super.onActivityCreated(savedInstanceState);
 
-        dbAdapter = new JITDatabaseAdapter(getActivity());
+        JITDatabaseAdapter dbAdapter = new JITDatabaseAdapter(getActivity());
         behaviors = dbAdapter.getBehaviors();
 
         setListAdapter(new MyAppSectionArrayAdapter(getActivity(), behaviors, new MyAppSectionArrayAdapter.ImCallBack() {

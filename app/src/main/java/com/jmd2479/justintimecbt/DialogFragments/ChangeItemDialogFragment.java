@@ -117,19 +117,19 @@ public class ChangeItemDialogFragment extends DialogFragment implements View.OnC
                         ChangeItemDialogFragment.this.dismiss();
                         break;
                     case R.string.EDIT_ITEM_TYPE_SHUTDOWN_INDEX:
-                        JITDB.deleteShutdown(args.getInt("EditItemId"));
+                        JITDB.updateShutdown(args.getInt("EditItemId"), editItemTextField.getText().toString());
                         ChangeItemDialogFragment.this.dismiss();
                         break;
                     case R.string.EDIT_ITEM_TYPE_RATIONALIZATION_INDEX:
-                        JITDB.deleteRationalization(args.getInt("EditItemId"));
+                        JITDB.updateRationalization(args.getInt("EditItemId"), editItemTextField.getText().toString());
                         ChangeItemDialogFragment.this.dismiss();
                         break;
                     case R.string.EDIT_ITEM_TYPE_ALTERNATIVE_INDEX:
-                        JITDB.deleteAlternative(args.getInt("EditItemId"));
+                        JITDB.updateAlternative(args.getInt("EditItemId"), editItemTextField.getText().toString());
                         ChangeItemDialogFragment.this.dismiss();
                         break;
                     case R.string.EDIT_ITEM_TYPE_LOGICALRESPONSE_INDEX:
-                        JITDB.deleteLogicalResponse(args.getInt("EditItemId"));
+                        JITDB.updateLogicalResponse(args.getInt("EditItemId"), editItemTextField.getText().toString());
                         ChangeItemDialogFragment.this.dismiss();
                         break;
                 }

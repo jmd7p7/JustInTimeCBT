@@ -17,7 +17,6 @@ import java.util.ArrayList;
  * Created by Jonathan on 11/29/2015.
  */
 public class LogicalResponseListFragment extends ListFragment {
-    JITDatabaseAdapter dbAdapter;
     ArrayList<ListItem> logicalResponses;
     Bundle receivedArgs;
 
@@ -30,7 +29,7 @@ public class LogicalResponseListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         receivedArgs = getArguments();
-        dbAdapter = new JITDatabaseAdapter(getActivity());
+        JITDatabaseAdapter dbAdapter = new JITDatabaseAdapter(getActivity());
         logicalResponses = dbAdapter.getLogicalResponsesByRationalizationId(receivedArgs.getInt("ParentId"));
         setListAdapter(new MyAppSectionArrayAdapter(getActivity(), logicalResponses, new MyAppSectionArrayAdapter.ImCallBack() {
             @Override

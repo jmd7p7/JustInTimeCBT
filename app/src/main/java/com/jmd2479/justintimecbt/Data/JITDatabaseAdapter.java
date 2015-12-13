@@ -199,6 +199,14 @@ public class JITDatabaseAdapter  {
         db.close();
     }
 
+    public void updateShutdown(int editItemId, String editedShutdownMessage) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.SHUTDOWN_MESSAGE, editedShutdownMessage);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.SHUTDOWN_TABLE, cv, helper.SHUTDOWN_ID + "=" + editItemId, null);
+        db.close();
+    }
+
 
     //Rationalization-related SQL statements
     public long insertRationalizationByBehaviorId(Rationalization rationalization){
@@ -231,6 +239,14 @@ public class JITDatabaseAdapter  {
     public void deleteRationalization(int rationalizationId) {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.delete(helper.RATIONALIZATION_TABLE, helper.RATIONALIZATION_ID + "=" + rationalizationId, null);
+        db.close();
+    }
+
+    public void updateRationalization(int editItemId, String editedRationalization) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.RATIONALIZATION_MESSAGE, editedRationalization);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.RATIONALIZATION_TABLE, cv, helper.RATIONALIZATION_ID + "=" + editItemId, null);
         db.close();
     }
 
@@ -313,6 +329,22 @@ public class JITDatabaseAdapter  {
         rowsDeleted= db.delete(helper.ALTERNATIVE_TABLE, helper.ALTERNATIVE_ID + "=" + alternativeId, null);
         db.close();
         return rowsDeleted;
+    }
+
+    public void updateAlternative(int editItemId, String editedAlternative) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.ALTERNATIVE_MESSAGE, editedAlternative);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.ALTERNATIVE_TABLE, cv, helper.ALTERNATIVE_ID + "=" + editItemId, null);
+        db.close();
+    }
+
+    public void updateLogicalResponse(int editItemId, String editedLogicalResponse) {
+        ContentValues cv = new ContentValues();
+        cv.put(helper.LOGICAL_RESPONSE_MESSAGE, editedLogicalResponse);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.update(helper.LOGICAL_RESPONSE_TABLE, cv, helper.LOGICAL_RESPONSE_ID + "=" + editItemId, null);
+        db.close();
     }
 
 

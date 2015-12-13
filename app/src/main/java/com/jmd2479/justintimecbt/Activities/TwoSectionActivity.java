@@ -36,8 +36,6 @@ public class TwoSectionActivity extends AppCompatActivity implements BehaviorLis
         AlternativeListFragment.onAlternativeSelectedListener, LogicalResponseListFragment.onLogicalResponseSelectedListener,
         MyDialogCloseListener{
 
-    private FragmentManager fm;
-    private AddNewFragment addNewFragment;
     private Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

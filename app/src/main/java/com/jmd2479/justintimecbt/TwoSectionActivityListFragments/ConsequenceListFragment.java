@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * Created by Jonathan on 10/25/2015.
  */
 public class ConsequenceListFragment extends ListFragment {
-    JITDatabaseAdapter dbAdapter;
     ArrayList<ListItem> consequences;
     Bundle receivedArgs;
 
@@ -23,7 +22,7 @@ public class ConsequenceListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         receivedArgs = getArguments();
-        dbAdapter = new JITDatabaseAdapter(getActivity());
+        JITDatabaseAdapter dbAdapter = new JITDatabaseAdapter(getActivity());
         consequences = dbAdapter.getConsequencesByBehaviorId(receivedArgs.getInt("ParentId"));
         setListAdapter(new MyAppSectionArrayAdapter(getActivity(), consequences, new MyAppSectionArrayAdapter.ImCallBack() {
             @Override
